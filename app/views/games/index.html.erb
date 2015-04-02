@@ -1,0 +1,26 @@
+<h1>Listing games</h1>
+
+<table class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Brand</th>
+      <th>Sellday</th>
+      <th>Model</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @games.each do |game| %>
+      <tr>
+        <td><%= link_to game.name, game %></td>
+        <td><%= game.brand.name %></td>
+        <td><%= game.sellday %></td>
+        <td><%= game.model %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= will_paginate @games %>

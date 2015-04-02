@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  furigana: MyString
+  sellday: MyString
+  brand_id: 1
+
+two:
+  name: MyString
+  furigana: MyString
+  sellday: MyString
+  brand_id: 1

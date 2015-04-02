@@ -1,0 +1,61 @@
+<p>
+  <strong>User:</strong>
+  <%= @review.user.name %>
+</p>
+
+<p>
+  <strong>Game:</strong>
+  <%= link_to @review.game.name, @review.game %>
+</p>
+
+<p>
+  <strong>Story:</strong>
+  <%= score(@review.story) %>
+</p>
+
+<p>
+  <strong>Cg:</strong>
+  <%= score(@review.cg) %>
+</p>
+
+<p>
+  <strong>Voice:</strong>
+  <%= score(@review.voice) %>
+</p>
+
+<p>
+  <strong>Music:</strong>
+  <%= score(@review.music) %>
+</p>
+
+<p>
+  <strong>System:</strong>
+  <%= score(@review.system) %>
+</p>
+
+<p>
+  <strong>Hscene:</strong>
+  <%= score(@review.hscene) %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= total_avg(@review) %>
+</p>
+
+<% unless @review.link == "" %>
+<p>
+  <strong>Link:</strong>
+  <%= link_to '외부리뷰 바로가기', @review.link, target: "_blank" %>
+</p>
+<% end %>
+<p>
+  <strong>Comments:</strong>
+  <%= simple_format(@review.comments) %>
+</p>
+
+<% if @user.id == @review.user_id %>
+<%= link_to 'Edit', edit_review_path(@review) %> |
+<%= link_to 'Destroy', @review, method: :delete, data: { confirm: 'Are you sure?' } %> | 
+<% end %>
+<%= link_to 'Back', reviews_path %>

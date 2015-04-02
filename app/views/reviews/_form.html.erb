@@ -1,0 +1,93 @@
+<%= form_for(@review) do |f| %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+      <% @review.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :game_id %>
+  </div>
+<div class="form-horizontal">
+  <div class="form-group">
+    <div class="col-sm-8">
+참고 : 점수를 -1로 주시면 평점에 반영되지 않습니다.
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-2">
+      <%= f.label :story, class: "control-label" %>
+    </div>
+    <div class="col-sm-2">
+      <%= f.select :story, Review::SCORE_TYPES, {}, {class: 'form-control'} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-2">
+      <%= f.label :cg, class: "control-label" %>
+    </div>
+    <div class="col-sm-2">
+      <%= f.select :cg, Review::SCORE_TYPES, {}, {class: 'form-control'} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-2">
+      <%= f.label :voice, class: "control-label" %>
+    </div>
+    <div class="col-sm-2">
+      <%= f.select :voice, Review::SCORE_TYPES, {}, {class: 'form-control'} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-2">
+      <%= f.label :music, class: "control-label" %>
+    </div>
+    <div class="col-sm-2">
+      <%= f.select :music, Review::SCORE_TYPES, {}, {class: 'form-control'} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-2">
+      <%= f.label :system, class: "control-label" %>
+    </div>
+    <div class="col-sm-2">
+      <%= f.select :system, Review::SCORE_TYPES, {}, {class: 'form-control'} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-2">
+      <%= f.label :hscene, class: "control-label" %>
+    </div>
+    <div class="col-sm-2">
+      <%= f.select :hscene, Review::SCORE_TYPES, {}, {class: 'form-control'} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-2">
+      <%= f.label :link, class: "control-label" %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.text_field :link, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-2">
+      <%= f.label :comments, class: "control-label" %>(2000자 이내)
+    </div>
+    <div class="col-sm-6">
+    <%= f.text_area :comments, class: "form-control", rows: 10 %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-6">
+    <%= f.submit %>
+    </div>
+  </div>
+</div>
+<% end %>

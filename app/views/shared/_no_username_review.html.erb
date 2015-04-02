@@ -1,0 +1,26 @@
+<% if @reviews.size != 0 %>
+<table id="reviews_table" class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>Game</th>
+      <th>Score</th>
+      <th>Total</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reviews.each do |review| %>
+      <tr>
+        <td><%= link_to review.game.name, review %></td>
+        <td><%= score_str(review) %></td>
+        <td><%= total_avg(review) %></td>
+        <td><%= review.created_at.strftime("%y-%m-%d") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<spen class="pull-right">Score: Story/CG/Voice/Music/System/HScene</span>
+<br><% else %>
+게임 리뷰를 해보세요!
+<% end %>

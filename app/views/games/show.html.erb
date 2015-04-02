@@ -1,0 +1,65 @@
+<p>
+  <strong>Name:</strong>
+  <%= @game.name %>
+</p>
+
+<p>
+  <strong>Furigana:</strong>
+  <%= @game.furigana %>
+</p>
+
+<p>
+  <strong>Sellday:</strong>
+  <%= @game.sellday %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @game.model %>
+</p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= link_to @game.brand.name, @game.brand %>
+</p>
+
+<div>
+  <% if @my_review.count == 0 %>
+  이 게임에 대한 리뷰를 남겨주시겠어요? <%= link_to '리뷰 작성하러 가기', new_review_path(game_id: @game.id) %>
+  <div><br>
+    <% if @tsumige.count == 0 %>
+    <%= link_to "츠미게로 추가하기", "/tsumige/add?game_id=#{@game.id}" %>
+    <% else %>
+    <%= link_to "츠미게 목록에서 제거하기", "/tsumige/remove?game_id=#{@game.id}" %>
+    <% end %>
+  </div><br>
+  <% end %>
+</div>
+
+<div>
+  참여한 사람들<br>
+  원화가<br>
+  <%= render(partial: "/shared/creater", object: @joins=@cg) %>
+  <br><br>시나리오 라이터<br>
+  <%= render(partial: "/shared/creater", object: @joins=@story) %>
+  <br><br>음악 담당<br>
+  <%= render(partial: "/shared/creater", object: @joins=@music) %>
+  <br><br>캐릭터 디자인<br>
+  <%= render(partial: "/shared/creater", object: @joins=@char) %>
+  <br><br>목소리 담당<br>
+  <%= render(partial: "/shared/creater", object: @joins=@voice) %>
+  <br><br>가수<br>
+  <%= render(partial: "/shared/creater", object: @joins=@sing) %>
+  <br><br>기타<br>
+  <%= render(partial: "/shared/creater", object: @joins=@etc) %>
+</div>
+<br>
+<div>
+  <% if @game.review.count == 0 %>
+  이 게임에 리뷰를 남기신 분이 없습니다.
+  <% else %>
+  이 게임에 대한 리뷰입니다.<br>
+  <%= render(partial: "simple_review", object: @reviews=@game.review) %>
+  <% end %>
+</div>
+<%= link_to 'Back', games_path %>

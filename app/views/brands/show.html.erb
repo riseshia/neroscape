@@ -1,0 +1,16 @@
+<p>
+  <strong>Name:</strong>
+  <%= @brand.name %>
+</p>
+
+<p>
+  <strong>Furigana:</strong>
+  <%= @brand.furigana %>
+</p>
+
+<div>
+	이 회사의 작품 목록<br>
+	<%= render(partial: "/shared/game", object: @games=@brand.game) %>
+</div>
+
+<%= link_to 'Back', brands_path %>

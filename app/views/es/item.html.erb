@@ -1,0 +1,34 @@
+<h1>Game Info</h1>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @game.name %>
+</p>
+
+<p>
+  <b>Furigana:</b>
+  <%= @game.furigana %>
+</p>
+
+<p>
+  <b>Sellday:</b>
+  <%= @game.sellday %>
+</p>
+
+<p>
+  <b>Brand:</b>
+  <%= @game.brand.name %>
+</p>
+
+<% if @rated.size == 0 %>
+<h3>이 게임을 해보셨나요?</h3>
+	<%= form_tag("/rating", role: "form") do %>
+	  <%= text_field_tag :rating, params[:rating], placeholder: "1-5점으로 평가해주세요(정수)." %>     
+	  <%= hidden_field_tag :id, @game.id %>     
+	  <%= submit_tag "Rating" %>
+	<% end %>
+<% end %>
+<br>
+<h2>비슷한 게임들</h2>
+<%= render(partial: "game", object: @recommends) %>

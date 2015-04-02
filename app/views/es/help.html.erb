@@ -1,0 +1,36 @@
+<h2><%= @user.name %> 님의 리뷰 목록</h2>
+<% if @reviews.size != 0 %>
+<table class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Game</th>
+      <th>Story</th>
+      <th>Cg</th>
+      <th>Voice</th>
+      <th>Music</th>
+      <th>System</th>
+      <th>Hscene</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reviews.each do |review| %>
+      <tr>
+        <td><%= link_to '보기', review %></td>
+        <td><%= link_to review.game.name, review.game %></td>
+        <td><%= score(review.story) %></td>
+        <td><%= score(review.cg) %></td>
+        <td><%= score(review.voice) %></td>
+        <td><%= score(review.music) %></td>
+        <td><%= score(review.system) %></td>
+        <td><%= score(review.hscene) %></td>
+        <td><%= review.total %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br><% else %>
+게임 리뷰를 해보세요!
+<% end %>

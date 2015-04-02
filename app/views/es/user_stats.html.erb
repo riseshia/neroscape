@@ -1,0 +1,128 @@
+<%= @user.name %> 님의 통계 정보</br>
+리뷰한 게임의 갯수: <%= @review_count %></br>
+</br>
+평점 분포도</br>
+<div id="total-chart">
+  <svg></svg>
+</div>
+
+<%= stylesheet_link_tag    "nv.d3.min", :media => "all" %>
+<%= javascript_include_tag "d3.v3" %>
+<%= javascript_include_tag "nv.d3.min" %>
+
+<script>
+
+window.total_data = [
+  {
+    key: "Cumulative Return",
+    values: [
+      { 
+        "label" : "0.0~0.5" ,
+        "value" : <%= @data_for_total_score[0] %>
+      } , 
+      { 
+        "label" : "0.5~1.0" , 
+        "value" : <%= @data_for_total_score[1] %>
+      } , 
+      { 
+        "label" : "1.0~1.5" , 
+        "value" : <%= @data_for_total_score[2] %>
+      } , 
+      { 
+        "label" : "1.5~2.0" , 
+        "value" : <%= @data_for_total_score[3] %>
+      } , 
+      { 
+        "label" : "2.0~2.5" ,
+        "value" : <%= @data_for_total_score[4] %>
+      }, 
+      { 
+        "label" : "2.5~3.0" , 
+        "value" : <%= @data_for_total_score[5] %>
+      } , 
+      { 
+        "label" : "3.0~3.5" , 
+        "value" : <%= @data_for_total_score[6] %>
+      } , 
+      { 
+        "label" : "3.5~4.0" , 
+        "value" : <%= @data_for_total_score[7] %>
+      } , 
+      { 
+        "label" : "4.0~4.5" ,
+        "value" : <%= @data_for_total_score[8] %>
+      }, 
+      { 
+        "label" : "4.5~5.0" , 
+        "value" : <%= @data_for_total_score[9] %>
+      } , 
+      { 
+        "label" : "5.0~5.5" , 
+        "value" : <%= @data_for_total_score[10] %>
+      } , 
+      { 
+        "label" : "5.5~6.0" , 
+        "value" : <%= @data_for_total_score[11] %>
+      } , 
+      { 
+        "label" : "6.0~6.5" ,
+        "value" : <%= @data_for_total_score[12] %>
+      }, 
+      { 
+        "label" : "6.5~7.0" , 
+        "value" : <%= @data_for_total_score[13] %>
+      } , 
+      { 
+        "label" : "7.0~7.5" , 
+        "value" : <%= @data_for_total_score[14] %>
+      } , 
+      { 
+        "label" : "7.5~8.0" , 
+        "value" : <%= @data_for_total_score[15] %>
+      } , 
+      { 
+        "label" : "8.0~8.5" ,
+        "value" : <%= @data_for_total_score[16] %>
+      }, 
+      { 
+        "label" : "8.5~9.0" , 
+        "value" : <%= @data_for_total_score[17] %>
+      } , 
+      { 
+        "label" : "9.0~9.5" , 
+        "value" : <%= @data_for_total_score[18] %>
+      } , 
+      { 
+        "label" : "9.5~10.0" , 
+        "value" : <%= @data_for_total_score[19] %>
+      }
+    ]
+  }
+]
+
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.discreteBarChart()
+      .x(function(d) { return d.label })
+      .y(function(d) { return d.value })
+      .staggerLabels(true)
+      .tooltips(false)
+      .showValues(false)
+
+    chart.yAxis
+        .tickFormat(d3.format(',f'));
+
+    d3.select('#total-chart svg')
+      .datum(total_data)
+      .transition().duration(500)
+      .call(chart)
+      ;
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+})
+
+<%= @data_for_total_score.to_json %>
+</script>
