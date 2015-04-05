@@ -15,14 +15,12 @@
       <tr>
         <td><%= link_to review.user.name, "/user?id=#{review.user_id}" %></td>
         <td><%= link_to review.game.name, review %></td>
-        <td><%= score_str(review) %></td>
         <td><%= total_avg(review) %></td>
         <td><%= review.created_at.strftime("%y-%m-%d") %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<spen class="pull-right">Score: Story/CG/Voice/Music/System/HScene</span>
 <br><% else %>
 게임 리뷰를 해보세요!
 <% end %>

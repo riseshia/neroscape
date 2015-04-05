@@ -16,56 +16,11 @@
   </div>
 <div class="form-horizontal">
   <div class="form-group">
-    <div class="col-sm-8">
-참고 : 점수를 -1로 주시면 평점에 반영되지 않습니다.
-    </div>
-  </div>
-  <div class="form-group">
     <div class="col-sm-2">
-      <%= f.label :story, class: "control-label" %>
+      <%= f.label 'Total(0~100)', class: "control-label" %>
     </div>
-    <div class="col-sm-2">
-      <%= f.select :story, Review::SCORE_TYPES, {}, {class: 'form-control'} %>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-2">
-      <%= f.label :cg, class: "control-label" %>
-    </div>
-    <div class="col-sm-2">
-      <%= f.select :cg, Review::SCORE_TYPES, {}, {class: 'form-control'} %>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-2">
-      <%= f.label :voice, class: "control-label" %>
-    </div>
-    <div class="col-sm-2">
-      <%= f.select :voice, Review::SCORE_TYPES, {}, {class: 'form-control'} %>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-2">
-      <%= f.label :music, class: "control-label" %>
-    </div>
-    <div class="col-sm-2">
-      <%= f.select :music, Review::SCORE_TYPES, {}, {class: 'form-control'} %>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-2">
-      <%= f.label :system, class: "control-label" %>
-    </div>
-    <div class="col-sm-2">
-      <%= f.select :system, Review::SCORE_TYPES, {}, {class: 'form-control'} %>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-2">
-      <%= f.label :hscene, class: "control-label" %>
-    </div>
-    <div class="col-sm-2">
-      <%= f.select :hscene, Review::SCORE_TYPES, {}, {class: 'form-control'} %>
+    <div class="col-sm-4">
+      <%= f.text_field :total, class: 'form-control' %>
     </div>
   </div>
   <div class="form-group">

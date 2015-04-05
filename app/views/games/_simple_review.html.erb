@@ -3,11 +3,6 @@
   <thead>
     <tr>
       <th>User</th>
-      <th>Story</th>
-      <th>Cg</th>
-      <th>Voice</th>
-      <th>System</th>
-      <th>Hscene</th>
       <th>Total</th>
       <th></th>
     </tr>
@@ -17,11 +12,6 @@
     <% @reviews.each do |review| %>
       <tr>
         <td><%= link_to review.user.name, "/user?id=#{review.user_id}" %></td>
-        <td><%= review.story %></td>
-        <td><%= review.cg %></td>
-        <td><%= review.voice %></td>
-        <td><%= review.system %></td>
-        <td><%= review.hscene %></td>
         <td><%= review.total %></td>
         <td><%= link_to 'Show', review %></td>
       </tr>

@@ -39,15 +39,7 @@ class EsController < ApplicationController
     @review_count = @reviews.size
     @data_for_total_score = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     @reviews.each do |review|
-      scored = 0
-      scored += 1 unless review.story == -1
-      scored += 1 unless review.cg == -1
-      scored += 1 unless review.voice == -1
-      scored += 1 unless review.system == -1
-      scored += 1 unless review.music == -1
-      scored += 1 unless review.hscene == -1
-      
-      avg = review.total*2/scored
+      avg = review.total/5
       avg = 19 if avg == 20
       @data_for_total_score[avg] += 1
     end
