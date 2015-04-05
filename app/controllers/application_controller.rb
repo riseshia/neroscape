@@ -18,4 +18,9 @@ class ApplicationController < ActionController::Base
   def is_editor
     redirect_to '/', notice: '권한이 없습니다.' if current_user().level < 777
   end
+
+  # 등업하지 않은 유저의 접근을 방지
+  def user_check
+    redirect_to admin_no_perm_path, notice: '가입 승인 대기 중입니다.' if current_user().level == 0
+  end
 end

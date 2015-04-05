@@ -18,17 +18,17 @@ Eroscape::Application.routes.draw do
   controller :admin do
     get "admin/users" => :users
     get "admin/lv_up" => :lv_up
+    get "admin/no_perm" => :no_perm
   end
 
   resources :creaters
 
-
   resources :brands
-
 
   devise_for :users
 
   root :to => "es#recent"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

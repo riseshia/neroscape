@@ -1,5 +1,5 @@
 class EsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :user_check
 
   def recent
     @reviews = Review.order("id DESC").limit(10)

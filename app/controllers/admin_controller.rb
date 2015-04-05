@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  before_filter :admin_check
+  before_filter :admin_check, except: :no_perm
   
   def users
     @users = User.paginate(page: params[:page], per_page: 10)
@@ -9,7 +9,7 @@ class AdminController < ApplicationController
     @user = User.find_by_id(params[:user_id])
 
     if @user
-      @user.level = 1 unless @user.level
+      @user.level = 1 if @user.level == 0
       @user.save!
     end
 
