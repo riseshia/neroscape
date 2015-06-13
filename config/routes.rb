@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :categories
   namespace :home do
     get 'index'
     get 'locked'

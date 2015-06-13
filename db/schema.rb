@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150613033212) do
+ActiveRecord::Schema.define(version: 20150613085027) do
 
   create_table "appearances", force: :cascade do |t|
     t.integer  "creator_id"
@@ -27,6 +27,12 @@ ActiveRecord::Schema.define(version: 20150613033212) do
     t.integer  "getchu_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "characters", force: :cascade do |t|
@@ -56,6 +62,14 @@ ActiveRecord::Schema.define(version: 20150613033212) do
     t.date     "release_date"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "page_hash"
+  end
+
+  create_table "rel_game_categories", force: :cascade do |t|
+    t.integer  "game_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "rel_game_subgenres", force: :cascade do |t|

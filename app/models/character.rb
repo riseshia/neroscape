@@ -1,3 +1,4 @@
 class Character < ActiveRecord::Base
-  belongs_to :creator, :game
+  belongs_to :creator
+  belongs_to :game
 end
