@@ -1,0 +1,2 @@
+module RelGameSubgenresHelper
+end

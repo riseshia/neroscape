@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  poster_url: MyString
+  price: 
+  genre: MyString
+  story: MyText
+  brand_id: 1
+  getchu_id: 1
+  release_date: 2015-06-13
+
+two:
+  title: MyString
+  poster_url: MyString
+  price: 
+  genre: MyString
+  story: MyText
+  brand_id: 1
+  getchu_id: 1
+  release_date: 2015-06-13

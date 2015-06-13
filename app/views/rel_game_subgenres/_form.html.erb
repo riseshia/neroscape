@@ -1,0 +1,25 @@
+<%= form_for(@rel_game_subgenre) do |f| %>
+  <% if @rel_game_subgenre.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rel_game_subgenre.errors.count, "error") %> prohibited this rel_game_subgenre from being saved:</h2>
+
+      <ul>
+      <% @rel_game_subgenre.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :game_id %><br>
+    <%= f.number_field :game_id %>
+  </div>
+  <div class="field">
+    <%= f.label :subgenre_id %><br>
+    <%= f.number_field :subgenre_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

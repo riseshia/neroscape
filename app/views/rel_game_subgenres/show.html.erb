@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Game:</strong>
+  <%= @rel_game_subgenre.game_id %>
+</p>
+
+<p>
+  <strong>Subgenre:</strong>
+  <%= @rel_game_subgenre.subgenre_id %>
+</p>
+
+<%= link_to 'Edit', edit_rel_game_subgenre_path(@rel_game_subgenre) %> |
+<%= link_to 'Back', rel_game_subgenres_path %>

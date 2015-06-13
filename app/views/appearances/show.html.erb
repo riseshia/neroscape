@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @appearance.creator_id %>
+</p>
+
+<p>
+  <strong>Game:</strong>
+  <%= @appearance.game_id %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= @appearance.role_id %>
+</p>
+
+<%= link_to 'Edit', edit_appearance_path(@appearance) %> |
+<%= link_to 'Back', appearances_path %>
