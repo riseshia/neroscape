@@ -5,7 +5,8 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.json
   def index
-    @reviews = (params[:user_id] ? current_user.reviews.where('reviewed = 1') : Review.all)
+    reviewed = (params[:reviewed] == "false" ? 0 : 1) || 1
+    @reviews = (params[:user_id] ? current_user.reviews.where('reviewed = :reviewed', reviewed: reviewed) : Review.where('reviewed = 1'))
   end
 
   # GET /reviews/1
