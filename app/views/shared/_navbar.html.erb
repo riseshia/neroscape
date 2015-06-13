@@ -20,7 +20,7 @@
             <li><a href="#">My Reviews</a></li>
             <li><a href="#">My Stocks</a></li>
             <li class="divider"></li>
-            <li><a href="#">Users</a></li>
+            <li><%= link_to "Users", admin_users_path %></li>
             <li class="divider"></li>
             <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
           </ul>

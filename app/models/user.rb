@@ -5,4 +5,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :reviews
+
+  def locked?
+    self.level == 0
+  end
+
+  def admin?
+    self.level == 999
+  end
 end
