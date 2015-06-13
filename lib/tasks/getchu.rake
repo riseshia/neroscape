@@ -87,7 +87,7 @@ namespace :getchu do
         if data[:gennga_list]
           data[:gennga_list].each do |el|
             next if el.empty?
-            role_name = (el.end_with?('（SD原画）') ? '（SD原画）' : '原画')
+            role_name = (el.end_with?('（SD原画）') ? 'SD原画' : '原画')
             el.gsub!('（SD原画）','')
 
             role = Role.find_by_name(role_name) || Role.new(name: role_name)

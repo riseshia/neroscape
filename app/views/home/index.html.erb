@@ -1,9 +1,27 @@
 <%= notice %>
 <div class="row">
   <div class="col-lg-offset-2 col-lg-4">
-    Recent Reviews
+    <h3>Recent Reviews</h3>
+    <table class="table-striped">
+      <tbody>
+        <% @recent_reviews.each do |review| %>
+          <tr>
+            <td><%= link_to "#{review.game.title} by #{review.user.email}", game %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
   <div class="col-lg-4">
-    Next Release
+    <h3>Next Release</h3>
+    <table class="table-striped">
+      <tbody>
+        <% @next_games.each do |game| %>
+          <tr>
+            <td><%= link_to "#{game.release_date} #{game.title}", game %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
