@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   def admin?
-    redirect_to '/', notice: '권한이 없습니다.' unless current_user.try(:admin?)
+    redirect_to root_path, notice: '관리자 권한이 없습니다.' unless current_user.try(:admin?)
   end
 
   def locked?
