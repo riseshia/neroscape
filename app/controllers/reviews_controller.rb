@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
   # GET /reviews.json
   def index
     reviewed = (params[:reviewed] == "false" ? 0 : 1) || 1
-    @reviews = (params[:user_id] ? current_user.reviews.where('reviewed = :reviewed', reviewed: reviewed) : Review.where('reviewed = 1'))
+    @reviews = (params[:user_id] ? current_user.reviews.where('reviewed = :reviewed', reviewed: reviewed).paginate(:page => params[:page]) : Review.where('reviewed = 1').paginate(:page => params[:page]))
   end
 
   # GET /reviews/1

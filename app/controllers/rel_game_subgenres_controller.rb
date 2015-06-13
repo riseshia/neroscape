@@ -5,7 +5,7 @@ class RelGameSubgenresController < ApplicationController
   # GET /rel_game_subgenres
   # GET /rel_game_subgenres.json
   def index
-    @rel_game_subgenres = RelGameSubgenre.all
+    @rel_game_subgenres = RelGameSubgenre.paginate(:page => params[:page])
   end
 
   # GET /rel_game_subgenres/1

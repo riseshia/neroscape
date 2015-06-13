@@ -5,7 +5,7 @@ class AppearancesController < ApplicationController
   # GET /appearances
   # GET /appearances.json
   def index
-    @appearances = Appearance.all
+    @appearances = Appearance.paginate(:page => params[:page])
   end
 
   # GET /appearances/1
