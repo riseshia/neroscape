@@ -18,7 +18,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">My Reviews</a></li>
+            <li><%= link_to "My Reviews", reviews_path(user_id: current_user.id) %></li>
             <li><a href="#">My Stocks</a></li>
             <% if current_user.try(:admin?) %>
             <li class="divider"></li>

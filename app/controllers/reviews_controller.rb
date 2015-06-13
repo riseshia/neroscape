@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.json
   def index
-    @reviews = Review.all
+    @reviews = (params[:user_id] ? current_user.reviews.where('reviewed = 1') : Review.all)
   end
 
   # GET /reviews/1
@@ -42,12 +42,12 @@ class ReviewsController < ApplicationController
   # PATCH/PUT /reviews/1.json
   def update
     respond_to do |format|
-      if @review.update(review_params)
+      if @review.editable? && @review.update(review_params)
         format.html { redirect_to @review, notice: 'Review was successfully updated.' }
         format.json { render :show, status: :ok, location: @review }
       else
-        format.html { render :edit }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
+        format.html { redirect_to @review, notice: 'Review can not be edited.' }
+        format.json { head :no_content }
       end
     end
   end
@@ -55,10 +55,15 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1
   # DELETE /reviews/1.json
   def destroy
-    @review.destroy
     respond_to do |format|
-      format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
-      format.json { head :no_content }
+      if @review.editable?
+        @review.destroy
+        format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to reviews_url, notice: 'Review can not be destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 

@@ -23,13 +23,11 @@
         <td><%= review.game_id %></td>
         <td><%= review.reviewed %></td>
         <td><%= link_to 'Show', review %></td>
+        <% if review.editable? current_user %>
         <td><%= link_to 'Edit', edit_review_path(review) %></td>
         <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Review', new_review_path %>
