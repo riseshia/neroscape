@@ -1,4 +1,5 @@
 class CharactersController < ApplicationController
+  before_action :locked?
   before_action :set_character, only: [:show, :edit, :update, :destroy]
 
   # GET /characters

@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :reviews
 
-  def locked?
-    self.level == 0
+  def unlocked?
+    self.level != 0
   end
 
   def admin?

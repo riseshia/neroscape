@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  get 'home/index'
-  root 'home#index'
+
+  namespace :home do
+    get 'index'
+    get 'locked'
+  end
 
   namespace :admin do
     resources :users do
@@ -17,6 +20,8 @@ Rails.application.routes.draw do
   resources :reviews
   resources :games
   devise_for :users
+
+  root 'home#index'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

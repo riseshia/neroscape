@@ -1,4 +1,5 @@
 class SubgenresController < ApplicationController
+  before_action :locked?
   before_action :set_subgenre, only: [:show, :edit, :update, :destroy]
 
   # GET /subgenres

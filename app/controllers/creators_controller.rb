@@ -1,4 +1,5 @@
 class CreatorsController < ApplicationController
+  before_action :locked?
   before_action :set_creator, only: [:show, :edit, :update, :destroy]
 
   # GET /creators

@@ -1,4 +1,5 @@
 class AppearancesController < ApplicationController
+  before_action :locked?
   before_action :set_appearance, only: [:show, :edit, :update, :destroy]
 
   # GET /appearances

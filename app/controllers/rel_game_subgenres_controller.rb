@@ -1,4 +1,5 @@
 class RelGameSubgenresController < ApplicationController
+  before_action :locked?
   before_action :set_rel_game_subgenre, only: [:show, :edit, :update, :destroy]
 
   # GET /rel_game_subgenres
