@@ -29,6 +29,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # User Management
 gem 'devise'
 
+# Summernote
+gem 'summernote-rails'
+gem 'font-awesome-rails' # required
+gem 'bootstrap-sass'     # required
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
