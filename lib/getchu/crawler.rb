@@ -19,7 +19,7 @@ class Sinnsi
       data = {}
       
       # Default Information
-      soft_title = /(.+)\s\n+$/.match(html_piece.css('#soft-title').text)[1].strip
+      soft_title = html_piece.css('#soft-title').text.gsub(/\n|\s|（このタイトルの関連商品）/," ").strip
       data[:title] = soft_title
       data[:getchu_id] = id
 
@@ -47,8 +47,11 @@ class Sinnsi
       data[:brand_url] = brand_url
 
       price_node = self.find_node_in_table html_piece,'定価：'
-      price = /￥(\S+)/.match(price_node.css('td').last.text)[1].gsub(",","").strip
-      data[:price] = price
+      rexp = /￥(\S+)/.match(price_node.css('td').last.text)
+      if rexp
+        price = /￥(\S+)/.match(price_node.css('td').last.text)[1].gsub(",","").strip
+        data[:price] = price
+      end
 
       release_date = html_piece.css('#tooltip-day').text
       data[:release_date] = release_date
@@ -101,9 +104,10 @@ class Sinnsi
 
       div = html_piece.css('div.tabletitle, div.tablebody')
       div.each_with_index do |node, idx|
-        if node.text.include?("ストーリー")
+        if node.text && node.text.strip.end_with?("ストーリー")
           story = div[idx+1].text.strip
           data[:story] = story
+          break
         end
       end
       
@@ -128,9 +132,6 @@ class Sinnsi
       end
       data[:char_list] = chars
 
-      data.each do |k, v|
-        puts "#{k}: #{v}"
-      end
       data
     end
 
