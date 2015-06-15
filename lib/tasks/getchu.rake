@@ -159,7 +159,7 @@ namespace :getchu do
   task :update_all => :environment do
     puts '--- Start to Working ---'
 
-    date = Date.new(2014,12,1)
+    date = Date.new(2002,12,1)
     today = Date.today
 
     while date < today

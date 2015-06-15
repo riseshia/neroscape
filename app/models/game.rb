@@ -9,4 +9,19 @@ class Game < ActiveRecord::Base
   has_many :rel_game_subgenres
   has_many :categories, through: :rel_game_categories
   has_many :rel_game_categories
+
+  def gennga(roles)
+    role = roles.find {|r| r.name == '原画'}
+    self.creators.where('role_id = ?', role.id)
+  end
+
+  def sdgennga(roles)
+    role = roles.find {|r| r.name == 'SD原画'}
+    self.creators.where('role_id = ?', role.id)
+  end
+
+  def writer(roles)
+    role = roles.find {|r| r.name == 'シナリオ'}
+    self.creators.where('role_id = ?', role.id)
+  end
 end

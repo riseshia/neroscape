@@ -6,8 +6,13 @@
 </p>
 
 <p>
-  <strong>Poster url:</strong>
-  <%= @game.poster_url %>
+  <strong>Brand:</strong>
+  <%= @game.brand.name %>
+</p>
+
+<p>
+  <strong>Release date:</strong>
+  <%= @game.release_date %>
 </p>
 
 <p>
@@ -21,23 +26,54 @@
 </p>
 
 <p>
+  <strong>Subgenre:</strong>
+  <% @game.subgenres.each do |sg| %>
+  <%= sg.name + ' ' %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <% @game.categories.each do |ct| %>
+  <%= ct.name + ' ' %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Gennga:</strong>
+  <% @game.gennga(@roles).each do |cr| %>
+  <%= cr.name + ' ' %>
+  <% end %>
+</p>
+
+<p>
+  <strong>SDGennga:</strong>
+  <% @game.sdgennga(@roles).each do |cr| %>
+  <%= cr.name + ' ' %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Writer:</strong>
+  <% @game.writer(@roles).each do |cr| %>
+  <%= cr.name + ' ' %>
+  <% end %>
+</p>
+
+<p>
   <strong>Story:</strong>
   <%= @game.story %>
 </p>
 
 <p>
-  <strong>Brand:</strong>
-  <%= @game.brand_id %>
+  <strong>Charaters:</strong><br>
+  <% @game.characters.each do |ch| %>
+  <%= character_info(ch).html_safe %><br>
+  <% end %>
 </p>
 
 <p>
-  <strong>Getchu:</strong>
-  <%= @game.getchu_id %>
-</p>
-
-<p>
-  <strong>Release date:</strong>
-  <%= @game.release_date %>
+  <%= link_to 'Go to Getchu', "http://www.getchu.com/soft.phtml?id=#{@game.getchu_id}" %>
 </p>
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
