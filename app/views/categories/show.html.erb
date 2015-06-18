@@ -5,5 +5,5 @@
   <%= @category.name %>
 </p>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Edit |', edit_category_path(@category) if current_user.try(:admin?) %>
 <%= link_to 'Back', categories_path %>

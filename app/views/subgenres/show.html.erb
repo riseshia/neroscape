@@ -5,5 +5,5 @@
   <%= @subgenre.name %>
 </p>
 
-<%= link_to 'Edit', edit_subgenre_path(@subgenre) %> |
+<%= link_to 'Edit |', edit_subgenre_path(@subgenre) if current_user.try(:admin?) %>
 <%= link_to 'Back', subgenres_path %>

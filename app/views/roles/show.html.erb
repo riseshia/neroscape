@@ -5,5 +5,5 @@
   <%= @role.name %>
 </p>
 
-<%= link_to 'Edit', edit_role_path(@role) %> |
+<%= link_to 'Edit |', edit_role_path(@role) if current_user.try(:admin?) %>
 <%= link_to 'Back', roles_path %>
