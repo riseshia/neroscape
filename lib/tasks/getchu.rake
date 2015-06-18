@@ -38,7 +38,7 @@ def update_one_month(date)
 
       puts "- Insert data to DB."
       # Brand
-      brand = Brand.new
+      brand = Brand.find_by_name(data[:brand_name]) || Brand.new
       brand.name = data[:brand_name]
       brand.homepage_url = data[:brand_url]
       brand.getchu_id = data[:brand_getchu_id]
