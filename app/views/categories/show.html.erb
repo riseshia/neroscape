@@ -5,5 +5,33 @@
   <%= @category.name %>
 </p>
 
+<% unless @category.games.empty? %>
+<h1>Games</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Brand</th>
+      <th>Release date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @category.games.each do |game| %>
+      <tr>
+        <td><%= game.title %></td>
+        <td><%= link_to game.brand.name, game.brand %></td>
+        <td><%= game.release_date %></td>
+        <td><%= link_to 'Show', game %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+
+<br>
+
 <%= link_to 'Edit |', edit_category_path(@category) if current_user.try(:admin?) %>
 <%= link_to 'Back', categories_path %>

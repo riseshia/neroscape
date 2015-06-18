@@ -15,5 +15,32 @@
   <%= @brand.getchu_id %>
 </p>
 
+<% unless @brand.games.empty? %>
+<h1>Games</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Brand</th>
+      <th>Release date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @brand.games.each do |game| %>
+      <tr>
+        <td><%= game.title %></td>
+        <td><%= link_to game.brand.name, game.brand %></td>
+        <td><%= game.release_date %></td>
+        <td><%= link_to 'Show', game %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+<br>
+
 <%= link_to 'Edit |', edit_brand_path(@brand) if current_user.try(:admin?) %>
 <%= link_to 'Back', brands_path %>
