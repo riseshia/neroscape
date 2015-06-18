@@ -5,7 +5,11 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.includes(:brand).paginate(:page => params[:page])
+    @games = if params[:brand_id]
+      Game.includes(:brand).where('brand_id = ?', params[:brand_id]).paginate(:page => params[:page])
+    else
+      Game.includes(:brand).paginate(:page => params[:page])
+    end
   end
 
   # GET /games/1
