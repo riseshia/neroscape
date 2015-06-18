@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Title:</strong>
   <%= @game.title %>
@@ -7,7 +5,8 @@
 
 <p>
   <strong>Brand:</strong>
-  <%= @game.brand.name %>
+  <%= link_to @game.brand.name, @game.brand %>
+  <%= link_to '(이 회사의 작품들)', games_path(brand_id: @game.brand_id) %>
 </p>
 
 <p>
@@ -15,66 +14,86 @@
   <%= @game.release_date %>
 </p>
 
+<% if @game.price %>
 <p>
   <strong>Price:</strong>
-  <%= @game.price %>
+  <%= number_with_delimiter(@game.price) %>엔
 </p>
+<% end %>
 
+<% if @game.genre %>
 <p>
   <strong>Genre:</strong>
   <%= @game.genre %>
 </p>
+<% end %>
 
+<% unless @game.subgenres.empty? %>
 <p>
   <strong>Subgenre:</strong>
   <% @game.subgenres.each do |sg| %>
-  <%= sg.name + ' ' %>
+  <%= link_to sg.name, sg %> &nbsp;
   <% end %>
 </p>
+<% end %>
 
+<% unless @game.categories.empty? %>
 <p>
   <strong>Category:</strong>
   <% @game.categories.each do |ct| %>
-  <%= ct.name + ' ' %>
+  <%= link_to ct.name, ct %> &nbsp;
   <% end %>
 </p>
+<% end %>
 
+<% unless @game.gennga(@roles).empty? %>
 <p>
   <strong>Gennga:</strong>
   <% @game.gennga(@roles).each do |cr| %>
-  <%= cr.name + ' ' %>
+  <%= link_to cr.name, cr %> &nbsp;
   <% end %>
 </p>
+<% end %>
 
+<% unless @game.sdgennga(@roles).empty? %>
 <p>
   <strong>SDGennga:</strong>
   <% @game.sdgennga(@roles).each do |cr| %>
-  <%= cr.name + ' ' %>
+  <%= link_to cr.name, cr %> &nbsp;
   <% end %>
 </p>
+<% end %>
 
+<% unless @game.writer(@roles).empty? %>
 <p>
   <strong>Writer:</strong>
   <% @game.writer(@roles).each do |cr| %>
-  <%= cr.name + ' ' %>
+  <%= link_to cr.name, cr %> &nbsp;
   <% end %>
 </p>
+<% end %>
 
+<% if @game.story %>
 <p>
   <strong>Story:</strong>
   <%= @game.story %>
 </p>
+<% end %>
 
+<% unless @game.characters.empty? %>
 <p>
   <strong>Charaters:</strong><br>
   <% @game.characters.each do |ch| %>
   <%= character_info(ch).html_safe %><br>
   <% end %>
 </p>
+<% end %>
 
+<% if @game.getchu_id %>
 <p>
   <%= link_to 'Go to Getchu', "http://www.getchu.com/soft.phtml?id=#{@game.getchu_id}" %>
 </p>
+<% end %>
 
-<%= link_to 'Edit', edit_game_path(@game) %> |
+<%= link_to 'Edit |', edit_game_path(@game) if current_user.try(:admin?) %>
 <%= link_to 'Back', games_path %>

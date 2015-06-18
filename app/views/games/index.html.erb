@@ -16,7 +16,7 @@
     <% @games.each do |game| %>
       <tr>
         <td><%= game.title %></td>
-        <td><%= link_to game.brand.name, games_path(brand_id: game.brand_id) %></td>
+        <td><%= link_to game.brand.name, game.brand %></td>
         <td><%= game.release_date %></td>
         <td><%= link_to 'Show', game %></td>
         <td><%= link_to 'Edit', edit_game_path(game) %></td>
