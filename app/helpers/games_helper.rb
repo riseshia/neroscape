@@ -3,7 +3,7 @@ module GamesHelper
     str = ""
     str += "<strong>#{char.name}</strong>"
     if char.creator_id
-      str += " CV: #{char.creator.name}"
+      str += " CV: #{link_to char.creator.name, char.creator}"
     end
     str += '<br>'
     if char.description
