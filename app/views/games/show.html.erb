@@ -1,4 +1,9 @@
 <p>
+  <%= link_to "Go to write review", new_review_path(game_id: @game.id) unless current_user.reviewed? @game %>
+</p>
+
+
+<p>
   <strong>Title:</strong>
   <%= @game.title %>
 </p>

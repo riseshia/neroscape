@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
   def admin?
     self.level == 999
   end
+
+  def reviewed? game
+    Review.find_by(user_id: self.id, game_id: game.id).present?
+  end
 end
