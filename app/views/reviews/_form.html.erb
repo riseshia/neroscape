@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :score %><br>
+    <%= f.label :score %>(1-10)<br>
     <%= f.number_field :score %>
   </div>
   <div class="field">
     <%= f.label :content %><br>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, class: 'summernote' %>
   </div>
   <div class="actions">
     <%= f.hidden_field :game_id %>
