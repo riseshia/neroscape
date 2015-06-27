@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   resources :brands
   resources :reviews
   resources :games
+  namespace :users do
+    get ':id/stacks' => 'reviews#stacks'
+    get ':id/reviews' => 'reviews#reviews'
+  end
   devise_for :users
 
   root 'home#index'
