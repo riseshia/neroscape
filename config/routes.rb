@@ -19,11 +19,9 @@ Rails.application.routes.draw do
   resources :subgenres
   resources :brands
   resources :reviews
+  get 'users/:id/stacks' => 'reviews#stacks'
+  get 'users/:id/reviews' => 'reviews#reviews'
   resources :games
-  namespace :users do
-    get ':id/stacks' => 'reviews#stacks'
-    get ':id/reviews' => 'reviews#reviews'
-  end
   devise_for :users
 
   root 'home#index'

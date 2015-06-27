@@ -10,7 +10,6 @@ class Review < ActiveRecord::Base
   validate :content_cannot_be_empty
 
   def editable? user
-    puts user_id
     return true if user.id == user_id
     return true if user.admin?
     false
