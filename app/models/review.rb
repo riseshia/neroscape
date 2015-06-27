@@ -14,4 +14,16 @@ class Review < ActiveRecord::Base
     return true if user.admin?
     false
   end
+
+  def stacked?
+    reviewed == 0
+  end
+
+  def reviewed?
+    !self.stacked?
+  end
+
+  def done
+    self.reviewed = 1
+  end
 end
