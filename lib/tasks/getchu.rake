@@ -151,7 +151,7 @@ namespace :getchu do
 
     update_one_month(today)
     sleep 1
-    # update_one_month(today.next_month)
+    update_one_month(today.next_month)
 
     puts '--- Finished ---'
   end
