@@ -1,4 +1,3 @@
-https://travis-ci.org/#
 # Neroscape
 ネロスケープはゲームの感想を残のを手伝うためのプラットフォームです。
 
