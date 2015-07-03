@@ -18,7 +18,7 @@ class CharactersControllerTest < ActionController::TestCase
 
   test "should create character" do
     assert_difference('Character.count') do
-      post :create, character: { description: @character.description, game_id: @character.game_id, image_url: @character.image_url, name: @character.name, reator_id: @character.creator_id }
+      post :create, character: { description: @character.description, game_id: @character.game_id, image_url: @character.image_url, name: @character.name, creator_id: @character.creator_id }
     end
 
     assert_redirected_to character_path(assigns(:character))
@@ -35,7 +35,7 @@ class CharactersControllerTest < ActionController::TestCase
   end
 
   test "should update character" do
-    patch :update, id: @character, character: { description: @character.description, game_id: @character.game_id, image_url: @character.image_url, name: @character.name, reator_id: @character.creator_id }
+    patch :update, id: @character, character: { description: @character.description, game_id: @character.game_id, image_url: @character.image_url, name: @character.name, creator_id: @character.creator_id }
     assert_redirected_to character_path(assigns(:character))
   end
 
