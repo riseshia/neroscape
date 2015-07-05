@@ -26,7 +26,7 @@ def update_one_month(date)
         puts "- Need to update. Destroy data..."
         # Destroy
         game.rel_game_categories.destroy_all
-        game.rel_game_subgenres.destroy_all
+        game.rel_game_subgenres.destroy_ all
         game.appearances.destroy_all
         game.characters.destroy_all
         game.destroy!
@@ -38,34 +38,33 @@ def update_one_month(date)
 
       puts "- Insert data to DB."
       # Brand
-      brand = Brand.find_by_name(data[:brand_name]) || Brand.new
-      brand.name = data[:brand_name]
-      brand.homepage_url = data[:brand_url]
-      brand.getchu_id = data[:brand_getchu_id]
-      brand.save!
+      brand = Brand.find_or_create_by!(name: data[:brand_name]) do |brand|
+        brand.name = data[:brand_name]
+        brand.homepage_url = data[:brand_url]
+        brand.getchu_id = data[:brand_getchu_id]
+      end
 
       # Some data on 2001 has 0001.
       data[:release_date].gsub('0001','2001') if data[:release_date].start_with?('0001/01/01')
 
       # Game
-      game = Game.new
-      game.title = data[:title]
-      game.poster_url = data[:poster_url]
-      game.price = data[:price]
-      game.genre = data[:genre]
-      game.story = data[:story]
-      game.brand_id = brand.id
-      game.getchu_id = data[:getchu_id]
-      game.release_date = Date.strptime(data[:release_date],'%Y/%m/%d')
-      game.page_hash = md5(data)
-      game.save!
+      game = Game.new(
+        title: data[:title],
+        poster_url: data[:poster_url],
+        price: data[:price],
+        genre: data[:genre],
+        story: data[:story],
+        brand_id: brand.id,
+        getchu_id: data[:getchu_id],
+        release_date: Date.strptime(data[:release_date],'%Y/%m/%d'),
+        page_hash: md5(data)
+      )
 
       # Sub Genre
       if data[:subgenre_list]
         data[:subgenre_list].each do |el|
           next if el.empty?
-          sg = Subgenre.find_by_name(el) || Subgenre.new(name: el)
-          sg.save!
+          sg = Subgenre.find_or_create_by!(name: el)
           RelGameSubgenre.new(game_id: game.id, subgenre_id: sg.id).save!
         end
       end
@@ -74,8 +73,7 @@ def update_one_month(date)
       if data[:category_list]
         data[:category_list].each do |el|
           next if el.empty?
-          ct = Category.find_by_name(el) || Category.new(name: el)
-          ct.save!
+          ct = Category.find_or_create_by!(name: el)
           RelGameCategory.new(game_id: game.id, category_id: ct.id).save!
         end
       end
@@ -85,10 +83,8 @@ def update_one_month(date)
         data[:writer_list].each do |el|
           next if el.empty?
           role_name = 'シナリオ'
-          role = Role.find_by_name(role_name) || Role.new(name: role_name)
-          role.save!
-          creator = Creator.find_by_name(el) || Creator.new(name: el)
-          creator.save!
+          role = Role.find_or_create_by!(name: role_name)
+          creator = Creator.find_or_create_by!(name: el)
           Appearance.new(game_id: game.id, creator_id: creator.id, role_id: role.id).save!
         end
       end
@@ -100,10 +96,8 @@ def update_one_month(date)
           role_name = (el.end_with?('（SD原画）') ? 'SD原画' : '原画')
           el.gsub!('（SD原画）','')
 
-          role = Role.find_by_name(role_name) || Role.new(name: role_name)
-          role.save!
-          creator = Creator.find_by_name(el) || Creator.new(name: el)
-          creator.save!
+          role = Role.find_or_create_by!(name: role_name)
+          creator = Creator.find_or_create_by!(name: el)
           Appearance.new(game_id: game.id, creator_id: creator.id, role_id: role.id).save!
         end
       end
@@ -112,10 +106,8 @@ def update_one_month(date)
       if data[:artist]
         next if data[:artist].empty?
         role_name = 'アーティスト'
-        role = Role.find_by_name(role_name) || Role.new(name: role_name)
-        role.save!
-        creator = Creator.find_by_name(data[:artist]) || Creator.new(name: data[:artist])
-        creator.save!
+        role = Role.find_or_create_by!(name: role_name)
+        creator = Creator.find_or_create_by!(name: data[:artist])
         Appearance.new(game_id: game.id, creator_id: creator.id, role_id: role.id).save!
       end
 
@@ -125,10 +117,8 @@ def update_one_month(date)
           creator = nil
           if el[:char_cv] && !el[:char_cv].empty?
             role_name = 'CV'
-            role = Role.find_by_name(role_name) || Role.new(name: role_name)
-            role.save!
-            creator = Creator.find_by_name(el[:char_cv]) || Creator.new(name: el[:char_cv])
-            creator.save!
+            role = Role.find_or_create_by!(name: role_name)
+            creator = Creator.find_or_create_by!(name: el[:char_cv])
             Appearance.new(game_id: game.id, creator_id: creator.try(:id), role_id: role.try(:id)).save!
           end
           char = Character.new(name: el[:char_name], image_url: el[:char_img_url], game_id: game.id, creator_id: creator.try(:id), description: el[:char_text]).save!
@@ -171,4 +161,3 @@ namespace :getchu do
     puts '--- Finished ---'
   end
 end
-# today.strftime "%Y/%m/%d"
