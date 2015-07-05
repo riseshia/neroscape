@@ -4,6 +4,14 @@ def md5(data)
   Digest::MD5.hexdigest(data.to_s)
 end
 
+def destroy_game_with_related(game)
+  game.rel_game_categories.destroy_all
+  game.rel_game_subgenres.destroy_all
+  game.appearances.destroy_all
+  game.characters.destroy_all
+  game.destroy!
+end
+
 def update_one_month(date)
   list = Sinnsi.get_month(date)
 
@@ -25,11 +33,7 @@ def update_one_month(date)
           game.reviews.size == 0
         puts "- Need to update. Destroy data..."
         # Destroy
-        game.rel_game_categories.destroy_all
-        game.rel_game_subgenres.destroy_ all
-        game.appearances.destroy_all
-        game.characters.destroy_all
-        game.destroy!
+        destroy_game_with_related game
       elsif game
         puts "- No need to update. go to Next."
         # Not changed
