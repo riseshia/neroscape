@@ -52,7 +52,7 @@ def update_one_month(date)
       data[:release_date].gsub('0001','2001') if data[:release_date].start_with?('0001/01/01')
 
       # Game
-      game = Game.new(
+      game = Game.create!(
         title: data[:title],
         poster_url: data[:poster_url],
         price: data[:price],
@@ -69,7 +69,7 @@ def update_one_month(date)
         data[:subgenre_list].each do |el|
           next if el.empty?
           sg = Subgenre.find_or_create_by!(name: el)
-          RelGameSubgenre.new(game_id: game.id, subgenre_id: sg.id).save!
+          RelGameSubgenre.create!(game_id: game.id, subgenre_id: sg.id)
         end
       end
 
@@ -78,7 +78,7 @@ def update_one_month(date)
         data[:category_list].each do |el|
           next if el.empty?
           ct = Category.find_or_create_by!(name: el)
-          RelGameCategory.new(game_id: game.id, category_id: ct.id).save!
+          RelGameCategory.create!(game_id: game.id, category_id: ct.id)
         end
       end
 
@@ -89,7 +89,7 @@ def update_one_month(date)
           role_name = 'シナリオ'
           role = Role.find_or_create_by!(name: role_name)
           creator = Creator.find_or_create_by!(name: el)
-          Appearance.new(game_id: game.id, creator_id: creator.id, role_id: role.id).save!
+          Appearance.create!(game_id: game.id, creator_id: creator.id, role_id: role.id)
         end
       end
 
@@ -102,7 +102,7 @@ def update_one_month(date)
 
           role = Role.find_or_create_by!(name: role_name)
           creator = Creator.find_or_create_by!(name: el)
-          Appearance.new(game_id: game.id, creator_id: creator.id, role_id: role.id).save!
+          Appearance.create!(game_id: game.id, creator_id: creator.id, role_id: role.id)
         end
       end
       
@@ -112,7 +112,7 @@ def update_one_month(date)
         role_name = 'アーティスト'
         role = Role.find_or_create_by!(name: role_name)
         creator = Creator.find_or_create_by!(name: data[:artist])
-        Appearance.new(game_id: game.id, creator_id: creator.id, role_id: role.id).save!
+        Appearance.create!(game_id: game.id, creator_id: creator.id, role_id: role.id)
       end
 
       # Char
@@ -123,9 +123,9 @@ def update_one_month(date)
             role_name = 'CV'
             role = Role.find_or_create_by!(name: role_name)
             creator = Creator.find_or_create_by!(name: el[:char_cv])
-            Appearance.new(game_id: game.id, creator_id: creator.try(:id), role_id: role.try(:id)).save!
+            Appearance.create!(game_id: game.id, creator_id: creator.try(:id), role_id: role.try(:id))
           end
-          char = Character.new(name: el[:char_name], image_url: el[:char_img_url], game_id: game.id, creator_id: creator.try(:id), description: el[:char_text]).save!
+          char = Character.create!(name: el[:char_name], image_url: el[:char_img_url], game_id: game.id, creator_id: creator.try(:id), description: el[:char_text])
         end
       end
 
