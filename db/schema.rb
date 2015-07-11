@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150613145948) do
+ActiveRecord::Schema.define(version: 20150711041300) do
 
   create_table "appearances", force: :cascade do |t|
     t.integer  "creator_id"
@@ -94,6 +94,16 @@ ActiveRecord::Schema.define(version: 20150613145948) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "stacks", force: :cascade do |t|
+    t.integer  "game_id_id"
+    t.integer  "user_id_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "stacks", ["game_id_id"], name: "index_stacks_on_game_id_id"
+  add_index "stacks", ["user_id_id"], name: "index_stacks_on_user_id_id"
 
   create_table "subgenres", force: :cascade do |t|
     t.string   "name"
