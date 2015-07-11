@@ -15,5 +15,13 @@ RSpec.describe HomeController, :type => :controller do
       get :index
       expect(response).to render_template("index")
     end
+
+    it "should not accessible to lock user" do
+      @user = create(:lock_user)
+      sign_in @user
+      
+      get :index
+      expect(response).to redirect_to("/home/locked")
+    end
   end
 end
