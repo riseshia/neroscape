@@ -13,8 +13,8 @@
   <tbody>
     <% @reviews.each do |review| %>
       <tr>
-        <td><%= review.user.name %></td>
-        <td><%= review.game.title %></td>
+        <td><%= review.user_name %></td>
+        <td><%= review.game_title %></td>
         <td><%= review.score %></td>
         <td><%= link_to 'Show', review %></td>
         <% if review.editable? current_user %>

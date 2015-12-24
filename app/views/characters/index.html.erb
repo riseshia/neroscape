@@ -16,8 +16,8 @@
     <% @characters.each do |character| %>
       <tr>
         <td><%= character.name %></td>
-        <td><%= character.game.title %></td>
-        <td><%= character.creator.name %></td>
+        <td><%= character.game_title %></td>
+        <td><%= character.creator_name %></td>
         <td><%= link_to 'Show', character %></td>
       </tr>
     <% end %>

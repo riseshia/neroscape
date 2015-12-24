@@ -10,7 +10,7 @@
 
 <p>
   <strong>Brand:</strong>
-  <%= link_to @game.brand.name, @game.brand %>
+  <%= link_to @game.brand_name, @game.brand %>
   <%= link_to '(이 회사의 작품들)', games_path(brand_id: @game.brand_id) %>
 </p>
 

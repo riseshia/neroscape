@@ -3,6 +3,9 @@ class Review < ActiveRecord::Base
   belongs_to :user
   belongs_to :game
 
+  delegate :title => :game, prefix: true
+  delegate :name => :user, prefix: true
+
   validates :user_id, presence: true
   validates :game_id, presence: true
   validates :reviewed, presence: true

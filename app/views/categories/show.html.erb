@@ -22,7 +22,7 @@
     <% @category.games.each do |game| %>
       <tr>
         <td><%= game.title %></td>
-        <td><%= link_to game.brand.name, game.brand %></td>
+        <td><%= link_to game.brand_name, game.brand %></td>
         <td><%= game.release_date %></td>
         <td><%= link_to 'Show', game %></td>
       </tr>

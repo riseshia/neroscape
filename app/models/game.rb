@@ -11,6 +11,8 @@ class Game < ActiveRecord::Base
   has_many :categories, through: :rel_game_categories
   has_many :rel_game_categories
 
+  delegate :name => :brand, prefix: true
+
   def gennga(roles)
     role = roles.find { |r| r.name == '原画' }
     creators.where('role_id = ?', role.id)
