@@ -7,19 +7,19 @@ Rails.application.routes.draw do
     get 'locked'
   end
 
-  resources :categories
-  resources :characters
-  resources :roles
-  resources :appearances
-  resources :creators
-  resources :rel_game_subgenres
-  resources :subgenres
-  resources :brands
-  resources :reviews
+  devise_for :users
   get 'users/:id/stacks' => 'reviews#stacks'
   get 'users/:id/reviews' => 'reviews#reviews'
-  resources :games
-  devise_for :users
+  resources :reviews
+  resources :games, only: [:index, :show]
+  resources :categories, only: [:index, :show]
+  resources :characters, only: [:index, :show]
+  resources :roles, only: [:index, :show]
+  resources :appearances, only: [:index, :show]
+  resources :creators, only: [:index, :show]
+  resources :rel_game_subgenres, only: [:index, :show]
+  resources :subgenres, only: [:index, :show]
+  resources :brands, only: [:index, :show]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
