@@ -1,3 +1,4 @@
+# AppearancesController
 class AppearancesController < ApplicationController
   before_action :locked?
   before_action :set_appearance, only: [:show, :edit, :update, :destroy]
@@ -5,7 +6,7 @@ class AppearancesController < ApplicationController
   # GET /appearances
   # GET /appearances.json
   def index
-    @appearances = Appearance.paginate(:page => params[:page])
+    @appearances = Appearance.paginate(page: params[:page])
   end
 
   # GET /appearances/1
@@ -63,13 +64,14 @@ class AppearancesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_appearance
-      @appearance = Appearance.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def appearance_params
-      params.require(:appearance).permit(:creator_id, :game_id, :role_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_appearance
+    @appearance = Appearance.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def appearance_params
+    params.require(:appearance).permit(:creator_id, :game_id, :role_id)
+  end
 end

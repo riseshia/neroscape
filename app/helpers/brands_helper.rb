@@ -1,2 +1,3 @@
+# BrandsHelper
 module BrandsHelper
 end

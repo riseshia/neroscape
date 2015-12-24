@@ -1,14 +1,11 @@
+# GamesHelper
 module GamesHelper
-  def character_info char
-    str = ""
+  def character_info(char)
+    str = ''
     str += "<strong>#{char.name}</strong>"
-    if char.creator_id
-      str += " CV: #{link_to char.creator.name, char.creator}"
-    end
+    str += " CV: #{link_to char.creator.name, char.creator}" if char.creator_id
     str += '<br>'
-    if char.description
-      str += char.description.gsub("\n", '<br>')
-    end
+    str += char.description.gsub("\n", '<br>') if char.description
     str + '<br>'
   end
 end

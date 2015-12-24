@@ -1,3 +1,4 @@
+# RolesController
 class RolesController < ApplicationController
   before_action :locked?
   before_action :admin?, only: [:edit, :update, :destroy]
@@ -6,7 +7,7 @@ class RolesController < ApplicationController
   # GET /roles
   # GET /roles.json
   def index
-    @roles = Role.paginate(:page => params[:page])
+    @roles = Role.paginate(page: params[:page])
   end
 
   # GET /roles/1
@@ -64,13 +65,14 @@ class RolesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_role
-      @role = Role.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def role_params
-      params.require(:role).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_role
+    @role = Role.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def role_params
+    params.require(:role).permit(:name)
+  end
 end

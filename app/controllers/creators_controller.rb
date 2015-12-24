@@ -1,3 +1,4 @@
+# CreatorsController
 class CreatorsController < ApplicationController
   before_action :locked?
   before_action :admin?, only: [:edit, :update, :destroy]
@@ -6,7 +7,7 @@ class CreatorsController < ApplicationController
   # GET /creators
   # GET /creators.json
   def index
-    @creators = Creator.paginate(:page => params[:page])
+    @creators = Creator.paginate(page: params[:page])
   end
 
   # GET /creators/1
@@ -64,13 +65,14 @@ class CreatorsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_creator
-      @creator = Creator.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def creator_params
-      params.require(:creator).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_creator
+    @creator = Creator.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def creator_params
+    params.require(:creator).permit(:name)
+  end
 end

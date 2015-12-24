@@ -1,3 +1,4 @@
+# RelGameSubgenresController
 class RelGameSubgenresController < ApplicationController
   before_action :locked?
   before_action :admin?, only: [:edit, :update, :destroy]
@@ -6,7 +7,7 @@ class RelGameSubgenresController < ApplicationController
   # GET /rel_game_subgenres
   # GET /rel_game_subgenres.json
   def index
-    @rel_game_subgenres = RelGameSubgenre.paginate(:page => params[:page])
+    @rel_game_subgenres = RelGameSubgenre.paginate(page: params[:page])
   end
 
   # GET /rel_game_subgenres/1
@@ -64,13 +65,14 @@ class RelGameSubgenresController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_rel_game_subgenre
-      @rel_game_subgenre = RelGameSubgenre.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def rel_game_subgenre_params
-      params.require(:rel_game_subgenre).permit(:game_id, :subgenre_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_rel_game_subgenre
+    @rel_game_subgenre = RelGameSubgenre.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def rel_game_subgenre_params
+    params.require(:rel_game_subgenre).permit(:game_id, :subgenre_id)
+  end
 end

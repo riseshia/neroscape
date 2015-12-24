@@ -1,2 +1,3 @@
+# RelGameSubgenresHelper
 module RelGameSubgenresHelper
 end

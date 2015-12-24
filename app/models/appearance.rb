@@ -1,3 +1,4 @@
+# Apperance
 class Appearance < ActiveRecord::Base
   belongs_to :creator
   belongs_to :game

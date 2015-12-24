@@ -6,7 +6,7 @@ class SubgenresController < ApplicationController
   # GET /subgenres
   # GET /subgenres.json
   def index
-    @subgenres = Subgenre.paginate(:page => params[:page])
+    @subgenres = Subgenre.paginate(page: params[:page])
   end
 
   # GET /subgenres/1
@@ -64,13 +64,14 @@ class SubgenresController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_subgenre
-      @subgenre = Subgenre.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def subgenre_params
-      params.require(:subgenre).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_subgenre
+    @subgenre = Subgenre.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def subgenre_params
+    params.require(:subgenre).permit(:name)
+  end
 end

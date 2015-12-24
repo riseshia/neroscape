@@ -1,3 +1,4 @@
+# Review
 class Review < ActiveRecord::Base
   belongs_to :user
   belongs_to :game
@@ -5,11 +6,12 @@ class Review < ActiveRecord::Base
   validates :user_id, presence: true
   validates :game_id, presence: true
   validates :reviewed, presence: true
-  validates :score, presence: true, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 10 }
+  validates :score, presence: true, numericality: {
+    only_integer: true, greater_than: 0, less_than_or_equal_to: 10 }
   validates :content, presence: true
   validate :content_cannot_be_empty
 
-  def editable? user
+  def editable?(user)
     return true if user.id == user_id
     return true if user.admin?
     false
@@ -28,8 +30,7 @@ class Review < ActiveRecord::Base
   end
 
   def content_cannot_be_empty
-    if content == "<br>" # because of summernote
-      errors.add(:content, "can't be empty")
-    end
+    # because of summernote
+    errors.add(:content, "can't be empty") if content == '<br>'
   end
 end

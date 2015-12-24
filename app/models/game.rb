@@ -1,3 +1,4 @@
+# Game
 class Game < ActiveRecord::Base
   belongs_to :brand
 
@@ -11,17 +12,17 @@ class Game < ActiveRecord::Base
   has_many :rel_game_categories
 
   def gennga(roles)
-    role = roles.find {|r| r.name == '原画'}
-    self.creators.where('role_id = ?', role.id)
+    role = roles.find { |r| r.name == '原画' }
+    creators.where('role_id = ?', role.id)
   end
 
   def sdgennga(roles)
-    role = roles.find {|r| r.name == 'SD原画'}
-    self.creators.where('role_id = ?', role.id)
+    role = roles.find { |r| r.name == 'SD原画' }
+    creators.where('role_id = ?', role.id)
   end
 
   def writer(roles)
-    role = roles.find {|r| r.name == 'シナリオ'}
-    self.creators.where('role_id = ?', role.id)
+    role = roles.find { |r| r.name == 'シナリオ' }
+    creators.where('role_id = ?', role.id)
   end
 end

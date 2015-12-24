@@ -1,3 +1,4 @@
+# BrandsController
 class BrandsController < ApplicationController
   before_action :locked?
   before_action :admin?, only: [:edit, :update, :destroy]
@@ -6,7 +7,7 @@ class BrandsController < ApplicationController
   # GET /brands
   # GET /brands.json
   def index
-    @brands = Brand.paginate(:page => params[:page])
+    @brands = Brand.paginate(page: params[:page])
   end
 
   # GET /brands/1
@@ -64,13 +65,14 @@ class BrandsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_brand
-      @brand = Brand.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def brand_params
-      params.require(:brand).permit(:name, :homepage_url, :getchu_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_brand
+    @brand = Brand.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def brand_params
+    params.require(:brand).permit(:name, :homepage_url, :getchu_id)
+  end
 end

@@ -1,2 +1,3 @@
+# AppearancesHelper
 module AppearancesHelper
 end

@@ -1,11 +1,13 @@
 require 'open-uri'
 require 'nokogiri'
 
+# Sinnsi
 class Sinnsi
+  # ClassMethods
   module ClassMethods
     def get_title(id)
       base_url = 'http://www.getchu.com/soft.phtml?id='
-        
+
       Nokogiri::HTML(
         open(base_url + id, 'Cookie' => 'getchu_adalt_flag=getchu.com; path=/'),
         nil, 'EUC-JP'
@@ -33,15 +35,12 @@ class Sinnsi
     def get_brand_getchu_id(html_piece)
       brand_piece = html_piece.css('td')
                     .find { |node| node.css('a#brandsite').size == 1 }
+      regexp = /search_brand_id=([0-9]+)/
       if brand_piece
-        /search_brand_id=([0-9]+)/.match(
-          brand_piece.css('nobr > a').attr('href').text
-        )[1].strip
+        regexp.match(brand_piece.css('nobr > a').attr('href').text)[1].strip
       else
         parent = find_node_in_table html_piece, 'ブランド：'
-        /search_brand_id=([0-9]+)/.match(
-          parent.css('td')[1].css('a').attr('href').text
-        )[1]
+        regexp.match(parent.css('td')[1].css('a').attr('href').text)[1]
       end
     end
 
@@ -134,53 +133,58 @@ class Sinnsi
       end
     end
 
+    def extract_img_url_from_char(img_node)
+      if img_node.size != 0
+        'http://www.getchu.com' +
+          img_node.attr('src').text[1..-1]
+      else
+        ''
+      end
+    end
+
+    def get_char(tr)
+      nodes = tr.css('td')
+      char_img_url = extract_img_url_from_char nodes[0].css('img')
+      name_cv = nodes[1].css('.chara-name').text.split('CV：')
+
+      {
+        char_name: name_cv[0],
+        char_cv: name_cv[1],
+        char_img_url: char_img_url,
+        char_text: nodes[1].css('dd').text
+      }
+    end
+
     def get_chars(html_piece)
       char_table = html_piece.css('div.tabletitle + table tr')
       chars = []
       char_table.each do |tr|
         next if tr.css('td[valign=middle]').size == 0
-        nodes = tr.css('td')
-        img_node = nodes[0].css('img')
-        char_img_url = if img_node.size != 0
-                         'http://www.getchu.com' +
-                         img_node.attr('src').text[1..-1]
-                       else
-                         ''
-                       end
-        name_cv = nodes[1].css('.chara-name').text.split('CV：')
-        char_name = name_cv[0]
-        char_cv = name_cv[1]
-        char_text = nodes[1].css('dd').text
-
-        char = {}
-        char[:char_name] = char_name
-        char[:char_cv] = char_cv
-        char[:char_img_url] = char_img_url
-        char[:char_text] = char_text
-        chars << char
+        chars << get_char(tr)
       end
       chars
     end
 
-    def parse(id)
-      html_piece = get_title id
-      data = {}
-
-      # Default Information
+    def parse_head(html_piece, id, data)
       data[:title] = html_piece.css('#soft-title').text
                      .gsub(/\n|\s|（このタイトルの関連商品）/, ' ').strip
       data[:getchu_id] = id
       data[:poster_url] = get_poster_url html_piece
 
-      data[:brand_getchu_id] = get_brand_getchu_id html_piece
-      data[:brand_name] = get_brand_name html_piece
-      data[:brand_url] = get_brand_url html_piece
-
       data[:price] = get_price html_piece
       data[:release_date] = html_piece.css('#tooltip-day').text
       data[:genre] = get_genre html_piece
+      data
+    end
 
-      # Second Information
+    def parse_brand(html_piece, data)
+      data[:brand_getchu_id] = get_brand_getchu_id html_piece
+      data[:brand_name] = get_brand_name html_piece
+      data[:brand_url] = get_brand_url html_piece
+      data
+    end
+
+    def parse_body(html_piece, data)
       data[:gennga_list] = get_gennga html_piece
       data[:writer_list] = get_writer html_piece
       data[:artist] = get_artist html_piece
@@ -188,6 +192,16 @@ class Sinnsi
       data[:category_list] = get_category html_piece
       data[:story] = get_story html_piece
       data[:char_list] = get_chars html_piece
+      data
+    end
+
+    def parse(id)
+      html_piece = get_title id
+      data = {}
+
+      parse_head html_piece, id, data
+      parse_brand html_piece, data
+      parse_body html_piece, data
 
       data
     end
@@ -198,5 +212,6 @@ class Sinnsi
       end
     end
   end
+
   extend ClassMethods
 end

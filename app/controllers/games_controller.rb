@@ -1,3 +1,4 @@
+# GamesController
 class GamesController < ApplicationController
   before_action :locked?
   before_action :admin?, only: [:edit, :update, :destroy]
@@ -7,10 +8,10 @@ class GamesController < ApplicationController
   # GET /games.json
   def index
     @games = if params[:brand_id]
-      Game.includes(:brand).where('brand_id = ?', params[:brand_id]).paginate(:page => params[:page])
-    else
-      Game.includes(:brand).paginate(:page => params[:page])
-    end
+               Game.includes(:brand).where('brand_id = ?', params[:brand_id]).paginate(page: params[:page])
+             else
+               Game.includes(:brand).paginate(page: params[:page])
+             end
   end
 
   # GET /games/1
@@ -69,13 +70,14 @@ class GamesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_game
-      @game = Game.includes(:brand, :characters, :appearances, :creators, :subgenres, :categories).find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def game_params
-      params.require(:game).permit(:title, :poster_url, :price, :genre, :story, :brand_id, :getchu_id, :release_date)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_game
+    @game = Game.includes(:brand, :characters, :appearances, :creators, :subgenres, :categories).find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def game_params
+    params.require(:game).permit(:title, :poster_url, :price, :genre, :story, :brand_id, :getchu_id, :release_date)
+  end
 end

@@ -1,3 +1,4 @@
+# ReviewsController
 class ReviewsController < ApplicationController
   before_action :locked?
   before_action :set_review, only: [:show, :edit, :update, :destroy]
@@ -5,19 +6,18 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.json
   def index
-    @reviews = Review.all.paginate(:page => params[:page])
+    @reviews = Review.all.paginate(page: params[:page])
   end
 
   # GET /users/:id/reviews
   def reviews
-    @reviews = Review.where(user_id: params[:id], reviewed: 1).paginate(:page => params[:page])
+    @reviews = Review.where(user_id: params[:id], reviewed: 1).paginate(page: params[:page])
   end
 
   # GET /users/:id/stacks
   def stacks
-    @reviews = Review.where(user_id: params[:id], reviewed: 0).paginate(:page => params[:page])
+    @reviews = Review.where(user_id: params[:id], reviewed: 0).paginate(page: params[:page])
   end
-
 
   # GET /reviews/1
   # GET /reviews/1.json
@@ -37,7 +37,7 @@ class ReviewsController < ApplicationController
   # POST /reviews.json
   def create
     @review = Review.new(review_params)
-    @review.user_id = current_user.id
+    @review.user = current_user
     @review.done
 
     respond_to do |format|
@@ -81,13 +81,14 @@ class ReviewsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_review
-      @review = Review.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def review_params
-      params.require(:review).permit(:score, :content, :user_id, :game_id, :reviewed)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_review
+    @review = Review.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def review_params
+    params.require(:review).permit(:score, :content, :user_id, :game_id, :reviewed)
+  end
 end

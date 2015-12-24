@@ -1,3 +1,4 @@
+# CharactersController
 class CharactersController < ApplicationController
   before_action :locked?
   before_action :admin?, only: [:edit, :update, :destroy]
@@ -6,7 +7,7 @@ class CharactersController < ApplicationController
   # GET /characters
   # GET /characters.json
   def index
-    @characters = Character.paginate(:page => params[:page])
+    @characters = Character.paginate(page: params[:page])
   end
 
   # GET /characters/1
@@ -64,13 +65,14 @@ class CharactersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_character
-      @character = Character.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def character_params
-      params.require(:character).permit(:name, :image_url, :game_id, :creator_id, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_character
+    @character = Character.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def character_params
+    params.require(:character).permit(:name, :image_url, :game_id, :creator_id, :description)
+  end
 end
