@@ -3,6 +3,6 @@ class Character < ActiveRecord::Base
   belongs_to :creator
   belongs_to :game
 
-  delegate :title => :game, prefix: true
-  delegate :name => :creator, prefix: true
+  delegate :title, to: :game, prefix: true
+  delegate :name, to: :creator, prefix: true
 end
