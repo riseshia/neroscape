@@ -1,3 +1,0 @@
-# CreatorsHelper
-module CreatorsHelper
-end

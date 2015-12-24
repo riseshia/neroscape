@@ -1,3 +1,0 @@
-# CharactersHelper
-module CharactersHelper
-end

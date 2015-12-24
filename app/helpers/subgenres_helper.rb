@@ -1,3 +1,0 @@
-# SubgenresHelper
-module SubgenresHelper
-end

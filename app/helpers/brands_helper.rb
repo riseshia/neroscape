@@ -1,3 +1,0 @@
-# BrandsHelper
-module BrandsHelper
-end

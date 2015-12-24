@@ -1,3 +1,0 @@
-# AppearancesHelper
-module AppearancesHelper
-end

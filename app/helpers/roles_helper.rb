@@ -1,3 +1,0 @@
-# RolesHelper
-module RolesHelper
-end
