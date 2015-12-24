@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150711041300) do
+ActiveRecord::Schema.define(version: 20151224110447) do
 
   create_table "appearances", force: :cascade do |t|
     t.integer  "creator_id"
@@ -20,6 +20,10 @@ ActiveRecord::Schema.define(version: 20150711041300) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "appearances", ["creator_id"], name: "index_appearances_on_creator_id"
+  add_index "appearances", ["game_id"], name: "index_appearances_on_game_id"
+  add_index "appearances", ["role_id"], name: "index_appearances_on_role_id"
 
   create_table "brands", force: :cascade do |t|
     t.string   "name"
@@ -45,6 +49,9 @@ ActiveRecord::Schema.define(version: 20150711041300) do
     t.datetime "updated_at",  null: false
   end
 
+  add_index "characters", ["creator_id"], name: "index_characters_on_creator_id"
+  add_index "characters", ["game_id"], name: "index_characters_on_game_id"
+
   create_table "creators", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -65,6 +72,8 @@ ActiveRecord::Schema.define(version: 20150711041300) do
     t.string   "page_hash"
   end
 
+  add_index "games", ["brand_id"], name: "index_games_on_brand_id"
+
   create_table "rel_game_categories", force: :cascade do |t|
     t.integer  "game_id"
     t.integer  "category_id"
@@ -72,12 +81,18 @@ ActiveRecord::Schema.define(version: 20150711041300) do
     t.datetime "updated_at",  null: false
   end
 
+  add_index "rel_game_categories", ["category_id"], name: "index_rel_game_categories_on_category_id"
+  add_index "rel_game_categories", ["game_id"], name: "index_rel_game_categories_on_game_id"
+
   create_table "rel_game_subgenres", force: :cascade do |t|
     t.integer  "game_id"
     t.integer  "subgenre_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "rel_game_subgenres", ["game_id"], name: "index_rel_game_subgenres_on_game_id"
+  add_index "rel_game_subgenres", ["subgenre_id"], name: "index_rel_game_subgenres_on_subgenre_id"
 
   create_table "reviews", force: :cascade do |t|
     t.integer  "score"
@@ -88,6 +103,9 @@ ActiveRecord::Schema.define(version: 20150711041300) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "reviews", ["game_id"], name: "index_reviews_on_game_id"
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
