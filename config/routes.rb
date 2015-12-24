@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   resources :roles, only: [:index, :show]
   resources :appearances, only: [:index, :show]
   resources :creators, only: [:index, :show]
-  resources :rel_game_subgenres, only: [:index, :show]
   resources :subgenres, only: [:index, :show]
   resources :brands, only: [:index, :show]
 
