@@ -1,6 +1,6 @@
 # HomeController
 class HomeController < ApplicationController
-  before_action :locked?, except: :locked
+  skip_before_action :locked?, only: :locked
 
   def index
     @recent_reviews = Review.includes(:game, :user).order('created_at DESC').limit(10)

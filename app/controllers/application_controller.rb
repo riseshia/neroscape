@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :authenticate_user!
+  before_action :locked?
 
   def admin?
     redirect_to root_path, notice: '관리자 권한이 없습니다.' unless current_user.try(:admin?)

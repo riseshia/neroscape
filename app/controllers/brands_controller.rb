@@ -1,6 +1,5 @@
 # BrandsController
 class BrandsController < ApplicationController
-  before_action :locked?
   before_action :set_brand, only: :show
 
   # GET /brands

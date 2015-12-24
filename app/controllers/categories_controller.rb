@@ -1,6 +1,5 @@
 # CategoriesController
 class CategoriesController < ApplicationController
-  before_action :locked?
   before_action :set_category, only: :show
 
   # GET /categories

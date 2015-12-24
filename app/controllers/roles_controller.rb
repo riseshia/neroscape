@@ -1,6 +1,5 @@
 # RolesController
 class RolesController < ApplicationController
-  before_action :locked?
   before_action :set_role, only: :show
 
   # GET /roles

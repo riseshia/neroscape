@@ -1,6 +1,5 @@
 # GamesController
 class GamesController < ApplicationController
-  before_action :locked?
   before_action :set_game, only: :show
 
   # GET /games
