@@ -15,5 +15,4 @@
   <%= @appearance.role_id %>
 </p>
 
-<%= link_to 'Edit |', edit_appearance_path(@appearance) if current_user.try(:admin?) %>
 <%= link_to 'Back', appearances_path %>

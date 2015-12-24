@@ -25,5 +25,4 @@
   <%= @character.description %>
 </p>
 
-<%= link_to 'Edit |', edit_character_path(@character) if current_user.try(:admin?) %>
 <%= link_to 'Back', characters_path %>
