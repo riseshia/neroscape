@@ -1,7 +1,9 @@
 <p>
-  <%= link_to "Go to write review", new_review_path(game_id: @game.id) unless current_user.reviewed? @game %>
+  <% if current_user.reviewed? @game %>
+  <% else %>
+  <%= link_to 'Go to write review', new_review_path(game_id: @game.id) unless current_user.reviewed? @game %>
+  <% end %>
 </p>
-
 
 <p>
   <strong>Title:</strong>
