@@ -1,4 +1,4 @@
-require_relative '../getchu/crawler.rb'
+require_relative '../getchu/sinnsi.rb'
 
 def md5(data)
   Digest::MD5.hexdigest(data.to_s)

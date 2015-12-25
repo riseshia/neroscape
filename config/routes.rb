@@ -8,8 +8,6 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  get 'users/:id/stacks' => 'reviews#stacks'
-  get 'users/:id/reviews' => 'reviews#reviews'
   resources :reviews
   resources :stacks
   resources :games, only: [:index, :show]

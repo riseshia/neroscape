@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  def create_review(user: user, game: game)
+  def create_review(user: reviewer, game: reviewed_game)
     Review.create(
       score: 10,
       content: 'fixture',

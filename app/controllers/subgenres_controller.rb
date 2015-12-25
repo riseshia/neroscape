@@ -1,3 +1,4 @@
+# SubgenresController
 class SubgenresController < ApplicationController
   before_action :set_subgenre, only: :show
 
