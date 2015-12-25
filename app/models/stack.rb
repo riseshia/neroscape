@@ -1,5 +1,7 @@
 # Stack
 class Stack < ActiveRecord::Base
+  include Editable
+
   belongs_to :game
   belongs_to :user
 
@@ -7,10 +9,4 @@ class Stack < ActiveRecord::Base
 
   validates :game_id, presence: true
   validates :user_id, presence: true
-
-  def editable?(user)
-    return true if user.id == user_id
-    return true if user.admin?
-    false
-  end
 end

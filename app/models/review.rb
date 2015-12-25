@@ -1,5 +1,7 @@
 # Review
 class Review < ActiveRecord::Base
+  include Editable
+  
   belongs_to :user
   belongs_to :game
 
@@ -13,11 +15,6 @@ class Review < ActiveRecord::Base
   validates :content, presence: true
   validate :content_cannot_be_empty
 
-  def editable?(user)
-    return true if user.id == user_id
-    return true if user.admin?
-    false
-  end
 
   def stacked?
     reviewed == 0
