@@ -29,9 +29,5 @@ class StacksController < InheritedResources::Base
   def set_stack
     @stack = Stack.find(params[:id])
   end
-
-  def stack_params
-    params.require(:stack).permit(:game_id, :user_id)
-  end
 end
 
