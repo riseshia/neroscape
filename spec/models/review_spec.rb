@@ -1,6 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe Review, type: :model do
+  describe 'Active Record Validations' do
+    it { should validate_presence_of(:user_id) }
+    it { should validate_presence_of(:game_id) }
+    it { should validate_presence_of(:content) }
+    it { should validate_presence_of(:score) }
+    it { should validate_numericality_of(:score) }
+  end
+
+  describe 'Active Record Associations' do
+    it { should belong_to(:user) }
+    it { should belong_to(:game) }
+  end
+
   describe '#all' do
     it 'should have 1 review' do
       create(:review)
