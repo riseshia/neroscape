@@ -27,10 +27,6 @@ class Review < ActiveRecord::Base
     !stacked?
   end
 
-  def done
-    reviewed = 1
-  end
-
   def content_cannot_be_empty
     # because of summernote
     errors.add(:content, "can't be empty") if content == '<br>'

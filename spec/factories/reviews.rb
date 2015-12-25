@@ -5,6 +5,5 @@ FactoryGirl.define do
     content 'tadfasdf'
     user_id 1
     game_id 1
-    reviewed 1
   end
 end

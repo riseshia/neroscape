@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151225103634) do
+ActiveRecord::Schema.define(version: 20151225112450) do
 
   create_table "appearances", force: :cascade do |t|
     t.integer  "creator_id"
@@ -99,9 +99,8 @@ ActiveRecord::Schema.define(version: 20151225103634) do
     t.text     "content"
     t.integer  "user_id"
     t.integer  "game_id"
-    t.integer  "reviewed",   default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "reviews", ["game_id"], name: "index_reviews_on_game_id"
