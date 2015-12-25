@@ -8,11 +8,6 @@ class ReviewsController < ApplicationController
     @reviews = Review.all.paginate(page: params[:page])
   end
 
-  # GET /users/:id/reviews
-  def reviews
-    @reviews = Review.where(user_id: params[:id], reviewed: 1).paginate(page: params[:page])
-  end
-
   # GET /reviews/1
   # GET /reviews/1.json
   def show
