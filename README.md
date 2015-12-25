@@ -2,7 +2,7 @@
 ネロスケープはゲームの感想を残のを手伝うためのプラットフォームです。
 
 # Requirement
-Rails 4.2.1
+Rails 4.2.5
 Mysql
 
 ## Code Status
