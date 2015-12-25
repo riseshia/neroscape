@@ -30,4 +30,3 @@ class StacksController < InheritedResources::Base
     @stack = Stack.find(params[:id])
   end
 end
-

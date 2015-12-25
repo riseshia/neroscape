@@ -1,7 +1,7 @@
 # Review
 class Review < ActiveRecord::Base
   include Editable
-  
+
   belongs_to :user
   belongs_to :game
 
@@ -14,7 +14,6 @@ class Review < ActiveRecord::Base
     only_integer: true, greater_than: 0, less_than_or_equal_to: 10 }
   validates :content, presence: true
   validate :content_cannot_be_empty
-
 
   def stacked?
     reviewed == 0

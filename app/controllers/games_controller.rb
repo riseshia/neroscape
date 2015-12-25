@@ -6,10 +6,10 @@ class GamesController < ApplicationController
   # GET /games.json
   def index
     @games = if params[:brand_id]
-               Game.includes(:brand).where('brand_id = ?', params[:brand_id]).paginate(page: params[:page])
+               Game.includes(:brand).where('brand_id = ?', params[:brand_id])
              else
-               Game.includes(:brand).paginate(page: params[:page])
-             end
+               Game.includes(:brand)
+             end.paginate(page: params[:page])
   end
 
   # GET /games/1
@@ -22,6 +22,8 @@ class GamesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_game
-    @game = Game.includes(:brand, :characters, :appearances, :creators, :subgenres, :categories).find(params[:id])
+    @game = Game.includes(
+      :brand, :characters, :appearances, :creators, :subgenres, :categories
+    ).find(params[:id])
   end
 end
