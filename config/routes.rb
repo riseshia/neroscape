@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'users/:id/stacks' => 'reviews#stacks'
   get 'users/:id/reviews' => 'reviews#reviews'
   resources :reviews
+  resources :stacks
   resources :games, only: [:index, :show]
   resources :categories, only: [:index, :show]
   resources :characters, only: [:index, :show]
