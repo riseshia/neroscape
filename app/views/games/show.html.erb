@@ -83,7 +83,7 @@
 <% if @game.story %>
 <p>
   <strong>Story:</strong>
-  <%= @game.story %>
+  <%= @game.story.gsub("\r\n",'<br>').html_safe %>
 </p>
 <% end %>
 

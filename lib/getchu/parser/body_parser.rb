@@ -53,6 +53,7 @@ module Sinnsi
           break
         end
       end
+      story
     end
 
     def extract_img_url_from_char(img_node)
