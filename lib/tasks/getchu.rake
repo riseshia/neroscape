@@ -30,9 +30,7 @@ def update_one_month(date)
       if game &&
          game.page_hash != md5(data) &&
          game.reviews.size == 0
-        puts '- Need to update. Destroy data...'
-        # Destroy
-        destroy_game_with_related game
+        puts '- Need to update.'
       elsif game
         puts '- No need to update. go to Next.'
         # Not changed
