@@ -36,14 +36,14 @@ class ReviewsController < ApplicationController
   # PATCH/PUT /reviews/1
   # PATCH/PUT /reviews/1.json
   def update
-    @review.editable? && @review.update(review_params)
+    @review.editable?(current_user) && @review.update(review_params)
     respond_with @review
   end
 
   # DELETE /reviews/1
   # DELETE /reviews/1.json
   def destroy
-    @review.editable? && @review.destroy
+    @review.editable?(current_user) && @review.destroy
     respond_with @review
   end
 

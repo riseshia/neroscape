@@ -56,4 +56,19 @@ RSpec.describe User, type: :model do
       expect(user.reviewed?(game)).to be false
     end
   end
+
+  describe '#in_stack?' do
+    it 'should return true' do
+      user = create(:unlock_user)
+      game = create(:dummy_game)
+      Stack.create(user: user, game: game)
+      expect(user.in_stack?(game)).to be true
+    end
+
+    it 'should return false' do
+      user = create(:unlock_user)
+      game = create(:dummy_game)
+      expect(user.in_stack?(game)).to be false
+    end
+  end
 end

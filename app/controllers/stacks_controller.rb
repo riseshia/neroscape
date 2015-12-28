@@ -1,6 +1,7 @@
 # StacksController
 class StacksController < InheritedResources::Base
   before_action :set_stack, only: :destroy
+  respond_to :html
 
   # GET /stacks
   # GET /stacks.json
@@ -8,19 +9,19 @@ class StacksController < InheritedResources::Base
     @stacks = Stack.paginate(page: params[:page])
   end
 
+  # POST /stacks
+  # POST /stacks.json
+  def create
+    render status: :bad_request && return unless params[:game_id]
+    @stacks = Stack.create(user: current_user, game_id: params[:game_id])
+    respond_with @stacks, location: -> { game_path(params[:game_id]) }
+  end
+
   # DELETE /stacks/1
   # DELETE /stacks/1.json
   def destroy
-    respond_to do |format|
-      if @stack.editable? current_user
-        @stack.destroy
-        format.html { redirect_to stacks_url, notice: 'Stack was successfully destroyed.' }
-        format.json { head :no_content }
-      else
-        format.html { redirect_to stacks_url, notice: 'Stack can not be destroyed.' }
-        format.json { head :no_content }
-      end
-    end
+    @stack.editable?(current_user) && @stack.destroy
+    respond_with @stack
   end
 
   private

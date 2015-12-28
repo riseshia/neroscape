@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   resources :reviews
-  resources :stacks
+  resources :stacks, only: [:index, :create, :destroy]
   resources :games, only: [:index, :show]
   resources :categories, only: [:index, :show]
   resources :characters, only: [:index, :show]

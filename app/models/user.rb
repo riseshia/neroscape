@@ -19,4 +19,8 @@ class User < ActiveRecord::Base
   def reviewed?(game)
     Review.find_by(user_id: id, game_id: game.id).present?
   end
+
+  def in_stack?(game)
+    Stack.find_by(user_id: id, game_id: game.id).present?
+  end
 end
