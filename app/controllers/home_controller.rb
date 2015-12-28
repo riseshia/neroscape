@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 
   def index
     @recent_reviews = Review.includes(:game, :user).order('created_at DESC').limit(10)
-    @next_games = Game.where('release_date >= ?', Time.zone.today).order('release_date ASC').limit(10)
+    @next_games = Game.next_releases.limit(10)
   end
 
   def locked

@@ -13,6 +13,10 @@ class Game < ActiveRecord::Base
 
   delegate :name, to: :brand, prefix: true
 
+  scope :next_releases, lambda {
+    where('release_date >= ?', Time.zone.today).order('release_date ASC')
+  }
+
   def gennga(roles)
     role = roles.find { |r| r.name == '原画' }
     creators.where('role_id = ?', role.id)
