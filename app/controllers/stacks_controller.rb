@@ -6,7 +6,11 @@ class StacksController < InheritedResources::Base
   # GET /stacks
   # GET /stacks.json
   def index
-    @stacks = Stack.paginate(page: params[:page])
+    @stacks = if params[:user_id]
+                Stack.where(user_id: params[:user_id])
+              else
+                Stack
+              end.paginate(page: params[:page])
   end
 
   # POST /stacks

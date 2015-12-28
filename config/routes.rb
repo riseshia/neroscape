@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     passwords: 'users/passwords',
     registrations: 'users/registrations'
   }
+  resources :users, only: [] do
+    resources :stacks, only: :index
+    resources :reviews, only: :index
+  end
   resources :reviews
   resources :stacks, only: [:index, :create, :destroy]
   resources :games, only: [:index, :show]
