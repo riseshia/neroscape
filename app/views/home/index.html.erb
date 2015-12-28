@@ -8,7 +8,7 @@
       <tbody>
         <% @recent_reviews.each do |review| %>
           <tr>
-            <td><%= link_to "#{review.game_title} by #{review.user_name}", review.game %></td>
+            <td><%= link_to "#{review.game_title} by #{review.user_name}", review %></td>
           </tr>
         <% end %>
       </tbody>
