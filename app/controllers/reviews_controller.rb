@@ -1,6 +1,7 @@
 # ReviewsController
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
+  respond_to :html
 
   # GET /reviews
   # GET /reviews.json
@@ -28,44 +29,22 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user = current_user
 
-    respond_to do |format|
-      if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
-        format.json { render :show, status: :created, location: @review }
-      else
-        format.html { render :new }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
-      end
-    end
+    @review.save
+    respond_with @review
   end
 
   # PATCH/PUT /reviews/1
   # PATCH/PUT /reviews/1.json
   def update
-    respond_to do |format|
-      if @review.editable? && @review.update(review_params)
-        format.html { redirect_to @review, notice: 'Review was successfully updated.' }
-        format.json { render :show, status: :ok, location: @review }
-      else
-        format.html { redirect_to @review, notice: 'Review can not be edited.' }
-        format.json { head :no_content }
-      end
-    end
+    @review.editable? && @review.update(review_params)
+    respond_with @review
   end
 
   # DELETE /reviews/1
   # DELETE /reviews/1.json
   def destroy
-    respond_to do |format|
-      if @review.editable?
-        @review.destroy
-        format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
-        format.json { head :no_content }
-      else
-        format.html { redirect_to reviews_url, notice: 'Review can not be destroyed.' }
-        format.json { head :no_content }
-      end
-    end
+    @review.editable? && @review.destroy
+    respond_with @review
   end
 
   private

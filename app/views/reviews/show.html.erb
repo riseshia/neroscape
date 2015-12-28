@@ -20,10 +20,5 @@
   <%= @review.game_title %>
 </p>
 
-<p>
-  <strong>Reviewed:</strong>
-  <%= @review.reviewed %>
-</p>
-
 <%= link_to 'Edit |', edit_review_path(@review) if current_user.try(:admin?) %>
 <%= link_to 'Back', reviews_path %>

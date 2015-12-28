@@ -28,6 +28,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'activeadmin', github: 'activeadmin'
 
+gem 'responders'
+
 # Paginate
 gem 'will_paginate'
 
