@@ -11,6 +11,7 @@ config/deploy.rb
 config/nginx.conf
 config/unicorn.rb
 config/unicorn_init.sh
+config/deploy
 
 ### Rails ###
 *.rbc
