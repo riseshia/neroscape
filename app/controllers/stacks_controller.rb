@@ -24,8 +24,19 @@ class StacksController < InheritedResources::Base
   # DELETE /stacks/1
   # DELETE /stacks/1.json
   def destroy
-    @stack.editable?(current_user) && @stack.destroy
-    respond_with @stack
+    detroy_stack(@stack, current_user)
+    respond_with(@stack)
+  end
+
+  # DELETE /stacks/with_game?game_id=1
+  def with_game
+    head :bad_request unless params[:game_id]
+    @stack = Stack.find_by(
+      game_id: params[:game_id],
+      user_id: current_user.id
+    )
+    detroy_stack(@stack, current_user)
+    respond_with @stack, location: game_path(params[:game_id])
   end
 
   private
@@ -33,5 +44,9 @@ class StacksController < InheritedResources::Base
   # Use callbacks to share common setup or constraints between actions.
   def set_stack
     @stack = Stack.find(params[:id])
+  end
+
+  def detroy_stack(stack, user)
+    stack.editable?(user) && stack.destroy
   end
 end

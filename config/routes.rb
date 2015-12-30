@@ -17,7 +17,9 @@ Rails.application.routes.draw do
     resources :reviews, only: :index
   end
   resources :reviews
-  resources :stacks, only: [:index, :create, :destroy]
+  resources :stacks, only: [:index, :create, :destroy] do
+    delete :with_game, on: :collection
+  end
   resources :games, only: [:index, :show]
   resources :categories, only: [:index, :show]
   resources :characters, only: [:index, :show]
