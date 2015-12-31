@@ -10,7 +10,7 @@ class StacksController < InheritedResources::Base
                 Stack.where(user_id: params[:user_id])
               else
                 Stack
-              end.paginate(page: params[:page])
+              end.page params[:page]
   end
 
   # POST /stacks

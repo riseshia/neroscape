@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
                  Review.where(user_id: params[:user_id])
                else
                  Review
-               end.paginate(page: params[:page])
+               end.page params[:page]
   end
 
   # GET /reviews/1

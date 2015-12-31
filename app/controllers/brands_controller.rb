@@ -5,7 +5,7 @@ class BrandsController < ApplicationController
   # GET /brands
   # GET /brands.json
   def index
-    @brands = Brand.paginate(page: params[:page])
+    @brands = Brand.page params[:page]
   end
 
   # GET /brands/1

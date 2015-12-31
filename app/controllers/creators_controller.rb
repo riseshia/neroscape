@@ -5,7 +5,7 @@ class CreatorsController < ApplicationController
   # GET /creators
   # GET /creators.json
   def index
-    @creators = Creator.paginate(page: params[:page])
+    @creators = Creator.page params[:page]
   end
 
   # GET /creators/1

@@ -30,8 +30,7 @@ gem 'activeadmin', github: 'activeadmin'
 
 gem 'responders'
 
-# Paginate
-gem 'will_paginate'
+gem 'kaminari'
 
 # User Management
 gem 'devise'

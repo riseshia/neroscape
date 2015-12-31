@@ -9,7 +9,7 @@ class GamesController < ApplicationController
                Game.includes(:brand).where('brand_id = ?', params[:brand_id])
              else
                Game.includes(:brand)
-             end.paginate(page: params[:page])
+             end.page params[:page]
   end
 
   # GET /games/1

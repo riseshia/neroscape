@@ -5,7 +5,7 @@ class SubgenresController < ApplicationController
   # GET /subgenres
   # GET /subgenres.json
   def index
-    @subgenres = Subgenre.paginate(page: params[:page])
+    @subgenres = Subgenre.page params[:page]
   end
 
   # GET /subgenres/1
