@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :stacks
 
+  validates :name, presence: true
+
   def unlocked?
     level != 0
   end

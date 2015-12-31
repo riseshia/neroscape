@@ -15,6 +15,10 @@ RSpec.describe User, type: :model do
     it { should have_many(:stacks) }
   end
 
+  describe 'Active Record Validations' do
+    it { should validate_presence_of(:name) }
+  end
+
   describe '#unlocked?' do
     it 'should return true' do
       user = create(:unlock_user)
