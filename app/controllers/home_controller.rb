@@ -8,5 +8,6 @@ class HomeController < ApplicationController
   end
 
   def locked
+    redirect_to root_path if current_user.try(:unlocked?)
   end
 end
