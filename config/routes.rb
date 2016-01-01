@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :home do
     get 'index'
     get 'locked'
+    get 'search'
   end
 
   devise_for :users, controllers: {

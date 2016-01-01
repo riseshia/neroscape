@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-lg-offset-2 col-lg-8">
+    <% if @games.try(:any?) %>
+      <h3>Result Games</h3>
+      <table class="table-striped">
+        <tbody>
+          <% @games.each do |game| %>
+            <tr>
+              <td><%= link_to game.title, game %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+    <% if @brands.try(:any?) %>
+      <h3>Result Brands</h3>
+      <table class="table-striped">
+        <tbody>
+          <% @brands.each do |brand| %>
+            <tr>
+              <td><%= link_to brand.name, brand %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+    <% if @creators.try(:any?) %>
+      <h3>Result Creators</h3>
+      <table class="table-striped">
+        <tbody>
+          <% @creators.each do |creator| %>
+            <tr>
+              <td><%= link_to creator.name, creator %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>
+
