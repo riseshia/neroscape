@@ -4,6 +4,11 @@
 </p>
 
 <p>
+  <strong>User:</strong>
+  <%= @review.user_name %>
+</p>
+
+<p>
   <strong>Score:</strong>
   <%= @review.score %>
 </p>
@@ -11,11 +16,6 @@
 <p>
   <strong>Content:</strong>
   <%= raw(@review.content) %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @review.user_name %>
 </p>
 
 <%= link_to 'Edit |', edit_review_path(@review) if @review.editable? current_user %>
