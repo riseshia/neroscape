@@ -49,14 +49,14 @@ RSpec.describe User, type: :model do
   describe '#reviewed?' do
     it 'should return true' do
       user = create(:unlock_user)
-      game = create(:dummy_game)
+      game = create(:game)
       create_review user: user, game: game
       expect(user.reviewed?(game)).to be true
     end
 
     it 'should return false' do
       user = create(:unlock_user)
-      game = create(:dummy_game)
+      game = create(:game)
       expect(user.reviewed?(game)).to be false
     end
   end
@@ -64,14 +64,14 @@ RSpec.describe User, type: :model do
   describe '#in_stack?' do
     it 'should return true' do
       user = create(:unlock_user)
-      game = create(:dummy_game)
+      game = create(:game)
       Stack.create(user: user, game: game)
       expect(user.in_stack?(game)).to be true
     end
 
     it 'should return false' do
       user = create(:unlock_user)
-      game = create(:dummy_game)
+      game = create(:game)
       expect(user.in_stack?(game)).to be false
     end
   end

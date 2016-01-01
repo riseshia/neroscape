@@ -17,8 +17,8 @@ class StacksController < InheritedResources::Base
   # POST /stacks.json
   def create
     render status: :bad_request && return unless params[:game_id]
-    @stacks = Stack.create(user: current_user, game_id: params[:game_id])
-    respond_with @stacks, location: -> { game_path(params[:game_id]) }
+    @stack = Stack.create(user: current_user, game_id: params[:game_id])
+    respond_with @stack, location: -> { game_path(params[:game_id]) }
   end
 
   # DELETE /stacks/1

@@ -14,6 +14,7 @@ class HomeController < ApplicationController
 
   def search
     return unless params[:query]
+    return unless params[:query].present?
     @games = Game.where('title like ?', "%#{params[:query]}%")
     @brands = Brand.where('name like ?', "%#{params[:query]}%")
     @creators = Creator.where('name like ?', "%#{params[:query]}%")

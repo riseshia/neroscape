@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe ReviewsController, type: :controller do
+  let(:valid_attributes) do
+    attributes_for(:review)
+  end
+
   let(:invalid_attributes) do
     attributes_for(:invalid_review)
   end
@@ -29,7 +33,7 @@ RSpec.describe ReviewsController, type: :controller do
 
     describe 'GET #show' do
       it 'assigns the requested review as @review' do
-        review = Review.create! attributes_for(:review)
+        review = Review.create! valid_attributes
         get :show, id: review.to_param
         expect(assigns(:review)).to eq(review)
       end
@@ -44,7 +48,7 @@ RSpec.describe ReviewsController, type: :controller do
 
     describe 'GET #edit' do
       it 'assigns the requested review as @review' do
-        review = Review.create! attributes_for(:review)
+        review = Review.create! valid_attributes
         get :edit, id: review.to_param
         expect(assigns(:review)).to eq(review)
       end
@@ -54,18 +58,18 @@ RSpec.describe ReviewsController, type: :controller do
       context 'with valid params' do
         it 'creates a new Review' do
           expect do
-            post :create, review: attributes_for(:review)
+            post :create, review: valid_attributes
           end.to change(Review, :count).by(1)
         end
 
         it 'assigns a newly created review as @review' do
-          post :create, review: attributes_for(:review)
+          post :create, review: valid_attributes
           expect(assigns(:review)).to be_a(Review)
           expect(assigns(:review)).to be_persisted
         end
 
         it 'redirects to the created review' do
-          post :create, review: attributes_for(:review)
+          post :create, review: valid_attributes
           expect(response).to redirect_to(review_path(Review.last))
         end
       end
@@ -86,19 +90,19 @@ RSpec.describe ReviewsController, type: :controller do
     describe 'PUT #update' do
       context 'with valid params' do
         it 'updates the requested review' do
-          review = Review.create! attributes_for(:review)
+          review = Review.create! valid_attributes
           put :update, id: review.to_param, review: attributes_for(:review)
           review.reload
         end
 
         it 'assigns the requested review as @review' do
-          review = Review.create! attributes_for(:review)
+          review = Review.create! valid_attributes
           put :update, id: review.to_param, review: attributes_for(:review)
           expect(assigns(:review)).to eq(review)
         end
 
         it 'redirects to the review' do
-          review = Review.create! attributes_for(:review)
+          review = Review.create! valid_attributes
           put :update, id: review.to_param, review: attributes_for(:review)
           expect(response).to redirect_to(review_path(review))
         end
@@ -106,13 +110,13 @@ RSpec.describe ReviewsController, type: :controller do
 
       context 'with invalid params' do
         it 'assigns the review as @review' do
-          review = Review.create! attributes_for(:review)
+          review = Review.create! valid_attributes
           put :update, id: review.to_param, review: invalid_attributes
           expect(assigns(:review)).to eq(review)
         end
 
         it 're-renders the "edit" template' do
-          review = Review.create! attributes_for(:review)
+          review = Review.create! valid_attributes
           put :update, id: review.to_param, review: invalid_attributes
           expect(response).to render_template('edit')
         end
@@ -121,14 +125,14 @@ RSpec.describe ReviewsController, type: :controller do
 
     describe 'DELETE #destroy' do
       it 'destroys the requested review' do
-        review = Review.create! attributes_for(:review)
+        review = Review.create! valid_attributes
         expect do
           delete :destroy, id: review.to_param
         end.to change(Review, :count).by(-1)
       end
 
       it 'redirects to the reviews list' do
-        review = Review.create! attributes_for(:review)
+        review = Review.create! valid_attributes
         delete :destroy, id: review.to_param
         expect(response).to redirect_to(reviews_url)
       end
