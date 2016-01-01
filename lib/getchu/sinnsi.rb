@@ -13,22 +13,32 @@ module Sinnsi
     include Sinnsi::BrandParser
     include Sinnsi::BodyParser
 
-    def get_title(id)
-      base_url = 'http://www.getchu.com/soft.phtml?id='
+    @base_url = 'http://www.getchu.com/soft.phtml?id='
+    @search_url = 'http://www.getchu.com/all/month_title.html?genre=pc_soft&gage=adult'
 
-      Nokogiri::HTML(
-        open(base_url + id, 'Cookie' => 'getchu_adalt_flag=getchu.com; path=/'),
-        nil, 'EUC-JP'
-      )
+    def get_title(id)
+      tries ||= 3
+      begin
+        Nokogiri::HTML(
+          open(@base_url + id, 'Cookie' => 'getchu_adalt_flag=getchu.com; path=/'),
+          nil, 'EUC-JP'
+        )
+      rescue
+        retry unless (tries -= 1).zero?
+      end
     end
 
     def get_month(day)
-      Nokogiri::HTML(
-        open(
-          "http://www.getchu.com/all/month_title.html?genre=pc_soft \
-          &gage=adult&year=#{day.year}&month=#{day.month}",
-          'Cookie' => 'getchu_adalt_flag=getchu.com; path=/'
-        ), nil, 'EUC-JP').css('.product a.black')
+      tries ||= 3
+      begin
+        Nokogiri::HTML(
+          open(
+            @search_url + "&year=#{day.year}&month=#{day.month}",
+            'Cookie' => 'getchu_adalt_flag=getchu.com; path=/'
+          ), nil, 'EUC-JP').css('.product a.black')
+      rescue
+        retry unless (tries -= 1).zero?
+      end
     end
 
     def parse_head(html_piece, id, data)
