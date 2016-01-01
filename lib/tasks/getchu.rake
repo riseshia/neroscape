@@ -10,7 +10,7 @@ def update_one_month(date)
   list.each do |game|
     id = /\d+/.match(game.attr('href'))[0]
     puts "- Getchu Game '#{id}' is checking...."
-    if id == '829543'
+    if id == '829543' || id == '792467' || id == '813499' || id == '813501'
       puts 'This game html cannot be parsed. skipped.'
       next
     end

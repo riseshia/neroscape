@@ -21,7 +21,7 @@ module Sinnsi
       price_node = find_node_in_table html_piece, '定価：'
       rexp = /￥(\S+)/.match(price_node.css('td').last.text)
       return unless rexp
-      /￥(\S+)/.match(price_node.css('td').last.text)[1].delete(',').strip
+      rexp[1].delete(',').strip
     end
   end
 end

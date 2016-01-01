@@ -7,14 +7,15 @@ require 'getchu/parser/head_parser'
 
 # Sinnsi
 module Sinnsi
+  @base_url = 'http://www.getchu.com/soft.phtml?id='
+  @search_url = 'http://www.getchu.com/all/month_title.html?genre=pc_soft&gage=adult'
+
   # ClassMethods
   module ClassMethods
     include Sinnsi::HeadParser
     include Sinnsi::BrandParser
     include Sinnsi::BodyParser
 
-    @base_url = 'http://www.getchu.com/soft.phtml?id='
-    @search_url = 'http://www.getchu.com/all/month_title.html?genre=pc_soft&gage=adult'
 
     def get_title(id)
       tries ||= 3
