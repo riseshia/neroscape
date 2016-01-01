@@ -17,6 +17,10 @@ class Game < ActiveRecord::Base
     where('release_date >= ?', Time.zone.today).order('release_date ASC')
   }
 
+  scope :released, lambda {
+    where('release_date <= ?', Time.zone.today).order('release_date DESC')
+  }
+
   def gennga(roles)
     role = roles.find { |r| r.name == '原画' }
     creators.where('role_id = ?', role.id)
