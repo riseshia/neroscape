@@ -1,4 +1,7 @@
-<p id="notice"><%= notice %></p>
+<p>
+  <strong>Game:</strong>
+  <%= link_to @review.game_title, @review.game %>
+</p>
 
 <p>
   <strong>Score:</strong>
@@ -13,11 +16,6 @@
 <p>
   <strong>User:</strong>
   <%= @review.user_name %>
-</p>
-
-<p>
-  <strong>Game:</strong>
-  <%= @review.game_title %>
 </p>
 
 <%= link_to 'Edit |', edit_review_path(@review) if @review.editable? current_user %>

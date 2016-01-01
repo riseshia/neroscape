@@ -16,7 +16,6 @@ module Sinnsi
     include Sinnsi::BrandParser
     include Sinnsi::BodyParser
 
-
     def get_title(id)
       tries ||= 3
       begin

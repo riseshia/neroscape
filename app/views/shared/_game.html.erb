@@ -1,7 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Games</h1>
-
 <table>
   <thead>
     <tr>
@@ -13,7 +9,7 @@
   </thead>
 
   <tbody>
-    <% @games.each do |game| %>
+    <% games.each do |game| %>
       <tr>
         <td><%= link_to game.title, game %></td>
         <td><%= link_to game.brand_name, game.brand %></td>
@@ -22,6 +18,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-<%= paginate @games %>

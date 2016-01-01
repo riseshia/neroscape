@@ -13,7 +13,7 @@
   <tbody>
     <% @stacks.each do |stack| %>
       <tr>
-        <td><%= stack.game_title if stack.game %></td>
+        <td><%= link_to(stack.game_title, stack.game) if stack.game %></td>
         <% if stack.editable? current_user %>
         <td><%= link_to 'Destroy', stack, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
