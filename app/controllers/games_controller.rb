@@ -8,7 +8,7 @@ class GamesController < ApplicationController
     @games = if params[:brand_id]
                Game.includes(:brand).where('brand_id = ?', params[:brand_id])
              else
-               Game.includes(:brand)
+               Game.includes(:brand).order(release_date: :desc)
              end.page params[:page]
   end
 
