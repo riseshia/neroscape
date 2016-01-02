@@ -42,6 +42,8 @@ gem 'summernote-rails'
 gem 'font-awesome-rails' # required
 gem 'bootstrap-sass'     # required
 
+gem 'whenever', :require => false
+
 gem 'puma'
 group :development do
     gem 'capistrano',         require: false
