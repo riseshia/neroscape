@@ -42,8 +42,6 @@ gem 'summernote-rails'
 gem 'font-awesome-rails' # required
 gem 'bootstrap-sass'     # required
 
-# Use Unicorn as the app server
-# gem 'unicorn'
 gem 'puma'
 group :development do
     gem 'capistrano',         require: false
