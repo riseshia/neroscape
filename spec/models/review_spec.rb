@@ -7,6 +7,7 @@ RSpec.describe Review, type: :model do
     it { should validate_presence_of(:content) }
     it { should validate_presence_of(:score) }
     it { should validate_length_of(:content).is_at_most(10_000) }
+    it { should validate_inclusion_of(:neta).in_range(0..1) }
     it do
       should validate_numericality_of(:score)
         .is_less_than_or_equal_to(100)

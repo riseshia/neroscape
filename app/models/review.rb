@@ -14,6 +14,7 @@ class Review < ActiveRecord::Base
     only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
   validates :content, presence: true
   validates :content, length: { maximum: 10_000 }
+  validates :neta, inclusion: { in: 0..1 }
   validate :content_cannot_be_empty
 
   def stacked?

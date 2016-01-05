@@ -9,7 +9,7 @@
         <tbody>
           <% @recent_reviews.each do |review| %>
             <tr>
-              <td><%= link_to review.game_title, review %> by <%= link_to review.user_name, user_reviews_path(review.user) %></td>
+              <td><%= link_to "#{review.game_title} (#{neta(review)})", review %> by <%= link_to review.user_name, user_reviews_path(review.user) %></td>
             </tr>
           <% end %>
         </tbody>
