@@ -166,6 +166,10 @@ namespace :getchu do
     update_one_month(today.next_month)
 
     puts '--- Finished ---'
+
+    require 'net/http'
+    uri = URI('https://lazycat.nyatorie.com/api')
+    Net::HTTP.post_form(uri, token: 'b640c46ad2b13666cbfd32de864ba3b0305ec671fabc156eb14509c2a6b7d450', status: 'ok', message: "#{Time.zone.today} is checked.")
   end
 
   task update_all: :environment do
