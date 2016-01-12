@@ -152,6 +152,11 @@ def update_one_month(date)
 
     sleep 1
   end
+rescue => e
+  require 'net/http'
+  uri = URI('https://lazycat.nyatorie.com/api')
+  Net::HTTP.post_form(uri, token: Rails.application.secrets.lazycat_token, status: 'fail', message: e)
+  raise
 end
 
 namespace :getchu do
