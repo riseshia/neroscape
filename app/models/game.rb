@@ -14,11 +14,11 @@ class Game < ActiveRecord::Base
   delegate :name, to: :brand, prefix: true
 
   scope :next_releases, lambda {
-    where('release_date >= ?', Time.zone.today).order('release_date ASC')
+    where('release_date >= ?', Time.zone.today.strftime('%Y/%m/%d')).order('release_date ASC')
   }
 
   scope :released, lambda {
-    where('release_date <= ?', Time.zone.today).order('release_date DESC')
+    where('release_date <= ?', Time.zone.today.strftime('%Y/%m/%d')).order('release_date DESC')
   }
 
   def gennga(roles)
