@@ -46,11 +46,11 @@ gem 'whenever', :require => false
 
 gem 'puma'
 group :development do
-    gem 'capistrano',         require: false
-    gem 'capistrano-rbenv',     require: false
-    gem 'capistrano-rails',   require: false
-    gem 'capistrano-bundler', require: false
-    gem 'capistrano3-puma',   require: false
+  gem 'capistrano',         require: false
+  gem 'capistrano-rbenv',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
 end
 
 group :development, :test do
