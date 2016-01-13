@@ -34,6 +34,8 @@ gem 'responders'
 
 gem 'kaminari'
 
+gem 'figaro'
+
 # User Management
 gem 'devise'
 
