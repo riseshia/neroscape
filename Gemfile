@@ -53,16 +53,15 @@ group :development do
   gem 'capistrano-rails',   require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma',   require: false
+  # Access an IRB console on exception pages or by using
+  # <%= console %> in views
+  gem 'web-console', '~> 2.0'
 end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution
   # and get a debugger console
   gem 'byebug'
-
-  # Access an IRB console on exception pages or by using
-  # <%= console %> in views
-  gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application
   # running in the background. Read more: https://github.com/rails/spring
@@ -73,4 +72,5 @@ group :development, :test do
 
   gem 'factory_girl_rails'
 end
+
 gem 'codeclimate-test-reporter', group: :test, require: nil
