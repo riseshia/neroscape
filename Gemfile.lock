@@ -293,7 +293,7 @@ DEPENDENCIES
   kaminari
   mysql2
   puma
-  rails (= 4.2.5.1)
+  rails
   responders
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
