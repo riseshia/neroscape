@@ -6,7 +6,11 @@ $(document).on('ready page:load', function () {
   $("#filter").click(function () {
     var year = $("#year").val();
     var month = $("#month").val();
-    $(this).attr("href", "/games?year=" + year + "&month=" + month);
+    var url = "/games?year=" + year;
+    if (month !== "-") {
+      url += "&month=" + month;
+    }
+    $(this).attr("href", url);
     return true;
   });
 })
