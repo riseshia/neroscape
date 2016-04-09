@@ -8,4 +8,10 @@ module GamesHelper
     str += char.description.gsub("\n", '<br>') if char.description
     str + '<br>'
   end
+
+  def categories_tag(categories)
+    categories.map do |category|
+      link_to category.name, category
+    end.join('、').html_safe
+  end
 end

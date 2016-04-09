@@ -23,6 +23,9 @@
             <li><%= link_to "My Reviews", user_reviews_path(current_user) %></li>
             <li><%= link_to "My Stocks", user_stacks_path(current_user) %></li>
             <li class="divider"></li>
+            <li><%= link_to "Brands", brands_path %></li>
+            <li><%= link_to "Games", games_path %></li>
+            <li class="divider"></li>
             <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
           </ul>
         </li>

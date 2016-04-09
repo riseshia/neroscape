@@ -1,26 +1,27 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-lg-10 col-lg-offset-1">
+    <h1>会社一覧</h1>
+    <table class="table table-hover table-condensed">
+      <thead>
+        <tr>
+          <th>名前</th>
+          <th>発売した作品数</th>
+        </tr>
+      </thead>
 
-<h1>Listing Brands</h1>
+      <tbody>
+        <% @brands.each do |brand| %>
+          <tr>
+            <td><%= link_to brand.name, brand %></td>
+            <td><%= brand.games.count %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Getchu</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @brands.each do |brand| %>
-      <tr>
-        <td><%= brand.name %></td>
-        <td><%= brand.getchu_id %></td>
-        <td><%= link_to 'Show', brand %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-<%= paginate @brands %>
+    <br>
+    <div class="text-center">
+    <%= paginate @brands %>
+    </div>
+  </div>
+</div>
