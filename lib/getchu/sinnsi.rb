@@ -43,7 +43,7 @@ module Sinnsi
 
     def parse_head(html_piece, id, data)
       data[:title] = html_piece.css('#soft-title').text
-                     .gsub(/\n|\s|（このタイトルの関連商品）/, ' ').strip
+                               .gsub(/\n|\s|（このタイトルの関連商品）/, ' ').strip
       data[:getchu_id] = id
       data[:poster_url] = get_poster_url html_piece
 

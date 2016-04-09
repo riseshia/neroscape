@@ -32,7 +32,7 @@ module Sinnsi
       return unless subgenre_node
 
       subgenres = subgenre_node.css('td').last.text
-                  .strip.gsub('[一覧]', '').split('、')
+                               .strip.gsub('[一覧]', '').split('、')
       subgenres.map(&:strip)
     end
 
@@ -57,7 +57,7 @@ module Sinnsi
     end
 
     def extract_img_url_from_char(img_node)
-      if img_node.size != 0
+      if !img_node.empty?
         'http://www.getchu.com' +
           img_node.attr('src').text[1..-1]
       else
@@ -82,7 +82,7 @@ module Sinnsi
       char_table = html_piece.css('div.tabletitle + table tr')
       chars = []
       char_table.each do |tr|
-        next if tr.css('td[valign=middle]').size == 0
+        next if tr.css('td[valign=middle]').empty?
         chars << get_char(tr)
       end
       chars

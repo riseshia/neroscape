@@ -9,9 +9,9 @@ module Sinnsi
     end
 
     def get_poster_url(html_piece)
-      if html_piece.css('#soft_table a.highslide').size > 0
+      if !html_piece.css('#soft_table a.highslide').empty?
         'http://www.getchu.com' + html_piece.css('#soft_table a.highslide')[0]
-          .attr('href')[1..-1].strip
+                                  .attr('href')[1..-1].strip
       else
         ''
       end
