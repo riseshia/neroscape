@@ -2,6 +2,10 @@
   <div class="col-lg-10 col-lg-offset-1">
     <h1>ゲーム一覧</h1>
 
+    年: <%= select_tag :year, options_for_select(("1990".."2016").to_a, "2016")%>
+    月: <%= select_tag :month, options_for_select(("01".."12").to_a, "01")%>
+    <%= link_to "Filter", "#", id: "filter" %>
+
     <table class="table table-hover table-condensed">
       <thead>
         <tr>

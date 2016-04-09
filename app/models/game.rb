@@ -20,6 +20,27 @@ class Game < ActiveRecord::Base
   scope :released, lambda {
     where('release_date <= ?', Time.zone.today.strftime('%Y/%m/%d')).order('release_date DESC')
   }
+ # if params[:brand_id]
+ #   Game.includes(:brand).where('brand_id = ?', params[:brand_id])
+ # else
+ #   Game.includes(:brand)
+ # end
+
+  scope :by_release_date, -> { order(release_date: :desc) }
+  scope :with_brand, lambda { |value|
+    where('brand_id = ?', value)
+  }
+  scope :with_year, -> (year) { where('release_date like ?', "#{year}%") }
+  scope :with_month, -> (month) { where('release_date like ?', "%-#{month}-%") }
+
+  def self.with_filter(filters)
+    last_self = self
+    last_self = last_self.with_brand(filters[:brand_id]) if filters[:brand_id]
+    last_self = last_self.with_year(filters[:year]) if filters[:year]
+    last_self = last_self.with_month(filters[:month]) if filters[:month]
+    last_self
+  end
+
 
   def gennga(roles)
     role = roles.find { |r| r.name == '原画' }
