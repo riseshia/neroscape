@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/activeadmin/activeadmin.git
-  revision: 70cfbf3d7d330b901ec82dc003ab79011c37fbe5
+  revision: 3b2015c8948b8b81879132449f23ab68e1330ef7
   specs:
     activeadmin (1.0.0.pre2)
       arbre (~> 1.0, >= 1.0.2)
@@ -159,7 +159,7 @@ GEM
     mime-types-data (3.2016.0221)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
-    multi_json (1.11.3)
+    multi_json (1.12.0)
     mysql2 (0.4.4)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
