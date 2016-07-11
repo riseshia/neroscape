@@ -1,7 +1,9 @@
+UNMAINTAINED
+
 # Neroscape
 ネロスケープはゲームの感想を残のを手伝うためのプラットフォームです。
 
-# Requirement
+## Requirement
 Rails 4.2.5
 Mysql
 
